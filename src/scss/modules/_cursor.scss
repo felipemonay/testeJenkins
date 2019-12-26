@@ -1,0 +1,15 @@
+// Cursor
+
+.cursor {
+    &--pointer {
+        cursor: pointer;
+    }
+
+    &--not-allowed {
+        cursor: not-allowed;
+    }
+
+    &--help {
+        cursor: help;
+    }
+}

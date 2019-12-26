@@ -1,0 +1,24 @@
+<nav class="float--right">
+    <ul class="pagination">
+        <li class="page-item">
+            <button (click)="prevPage(data.current_page - 1)" [disabled]="data.current_page === 1"
+                    [ngClass]="{active: data.current_page === 1}" class="page-link">
+                <i aria-hidden="true" class="fa fa-angle-double-left"></i>
+            </button>
+        </li>
+
+        <li *ngFor="let page of pages" class="page-item">
+            <button (click)="navigateTo(page)" [disabled]="data.current_page === page || page == '...'"
+                    [ngClass]="{active: data.current_page === page || page == '...'}" class="page-link">
+                {{ page }}
+            </button>
+        </li>
+
+        <li class="page-item">
+            <button (click)="nextPage(data.current_page + 1)" [disabled]="data.current_page === data.last_page"
+                    [ngClass]="{active: data.current_page === data.last_page}" class="page-link">
+                <i aria-hidden="true" class="fa fa-angle-double-right"></i>
+            </button>
+        </li>
+    </ul>
+</nav>

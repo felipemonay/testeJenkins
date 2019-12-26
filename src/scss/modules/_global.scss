@@ -1,0 +1,47 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-kerning: auto;
+    font-kerning: auto;
+}
+
+a {
+    text-decoration: none;
+    color: #03A9F4;
+}
+
+p {
+    margin: 0 0 12px;
+    line-height: 24px;
+}
+
+h1 {
+    line-height: 32px;
+    font: 400 24px/32px Barlow, sans-serif;
+    margin: 0 0 16px;
+}
+
+h1, h2, h3, h4, h5, h6, p, td, th {
+    font-weight: 400;
+}
+
+.portal-card__content {
+    h1, h2, h3, h4, h5, h6, p, td, th, a {
+        color: rgba(0, 0, 0, .87);
+    }
+}
+
+.disabled, [disabled] {
+    cursor: not-allowed !important;
+}
+
+[hidden], .hidden {
+    display: none !important;
+}

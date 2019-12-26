@@ -1,0 +1,74 @@
+<div class="portal-main__content mdc-theme--background mdc-theme--text-primary-on-background">
+    <div class="portal-pages__header">
+        <i class="fa fa-envelope-o fa-3x contact-page--icon"></i>
+    </div>
+
+    <section class="portal-pages__content">
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-1-desktop"></div>
+
+                <div
+                    class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone portal-pages__content-inner"
+                    style="margin-top: -357px">
+                    <h3 class="portal-pages__heading">Ajuda (Contato/Suporte)</h3>
+
+                    <form #formContact="ngForm" (submit)="send()" autocomplete="off">
+                        <div class="mdc-layout-grid">
+                            <div class="mdc-layout-grid__inner">
+                                <div
+                                    class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                                    <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                        <input [(ngModel)]="contact.title" autocomplete="off"
+                                               class="mdc-text-field__input" id="title"
+                                               name="title" required type="text">
+                                        <label [class.mdc-floating-label--float-above]="contact.title"
+                                               class="mdc-floating-label"
+                                               for="title">Assunto </label>
+                                        <div class="mdc-line-ripple"></div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                                    <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--fullwidth">
+                                        <textarea [(ngModel)]="contact.description" class="mdc-text-field__input"
+                                                  id="description"
+                                                  name="description" required
+                                                  rows="6"></textarea>
+                                        <label [class.mdc-floating-label--float-above]="contact.description"
+                                               class="mdc-floating-label"
+                                               for="description">Mensagem </label>
+                                        <div class="mdc-line-ripple"></div>
+                                    </div>
+                                    <p *ngIf="contact.description; else empty"
+                                       [style.color]=" contact.description.length > 950 ? 'red' : 'black'">
+                                        <small class="pull-right">{{ contact.description.length }} caracteres de 1000
+                                        </small>
+                                    </p>
+
+                                </div>
+
+                                <div
+                                    class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                                    <p class="mdc-typography--body2 float--right">
+                                        <small>Os campos marcados com * são obrigatórios.</small>
+                                    </p>
+                                </div>
+
+                                <div
+                                    class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                                    <div [ngClass]="{disabled: !formContact.valid}" class="float--right">
+                                        <button [disabled]="!formContact.valid" class="mdc-button mdc-button--outlined">
+                                            Enviar &nbsp; <i class="fa fa-send-o"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

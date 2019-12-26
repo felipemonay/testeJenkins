@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <base href="/">
+    <title>STS - Santander</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Barlow:100,300,400,400i,500,700,900"
+          rel="stylesheet">
+    <link href="favicon.ico" rel="icon" type="image/x-icon">
+</head>
+<body class="mat-typography">
+
+<app-root></app-root>
+
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script>
+    let urls = {
+        'localhost': 'http://127.0.0.1:8000/api',
+        'homolog-sts.midia.zone': 'http://homolog-sts-api.midia.zone/api',
+        'sts.midia.zone': 'https://api-sts.midia.zone/api'
+    };
+    document.ROOT_API_URL = urls[window.location.hostname];
+
+    var userAgent = navigator.userAgent;
+    if(userAgent.match(/MSIE|Trident/)){
+        alert('O STS Santander não é compatível com Internet Explorer, sugerimos o uso do Google Chrome ou Mozilla Firefox!');
+    }
+</script>
+
+</body>
+</html>
+
+

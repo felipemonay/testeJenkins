@@ -1,0 +1,16 @@
+<div class="portal-wrapper">
+    <div class="portal-wrapper__sidenav portal-wrapper__sidenav--classic mdc-theme--dark">
+        <app-side-menu></app-side-menu>
+    </div>
+
+    <main class="portal-main">
+        <app-top-toolbar></app-top-toolbar>
+
+        <div class="portal-main__content mdc-theme--background mdc-theme--text-primary-on-background">
+            <router-outlet></router-outlet>
+            <app-loader></app-loader>
+        </div>
+
+        <app-footer></app-footer>
+    </main>
+</div>

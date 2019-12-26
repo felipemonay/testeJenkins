@@ -1,0 +1,105 @@
+<div
+    class="portal-main__content mdc-theme--text-primary-on-light light-grey-bg portal-no-layout-container full-height bg-img--bottom">
+    <div class="mdc-layout-grid mdc-layout-grid--fullheight">
+        <div class="mdc-layout-grid__inner">
+            <div
+                class="mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-4-phone">
+            </div>
+
+            <div
+                class="mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--spake6-tablet mdc-layout-grid__cell--span-4-phone">
+                <div class="mdc-card portal-card portal-card--hero portal-card--horizontal  mdc-elevation--z24">
+                    <div class="mdc-layout-grid">
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell--span-6">
+                                <div
+                                    class="theme--grey-bg mdc-theme--text-primary-on-secondary portal-card__content portal-card__content--column">
+                                    <section class="text--center">
+                                        <div class="portal-card__title portal-card__title--vertical">
+                                            <img alt="logo" class="portal-card__logo"
+                                                src="/assets/images/santander_logo_white.png" width="100">
+                                            <h4 class="portal-card--headline2">Seja bem-vindo ao </h4>
+
+                                            <h1 class="portal-card--headline">Sistema Tags Santander</h1>
+                                        </div>
+
+                                        <p class="mdc-typography--body1">
+                                            Faça seu login utilizando o formulário ao lado e
+                                            caso seja seu primeiro acesso, realize o cadastro no link abaixo.
+
+                                        </p>
+
+                                    </section>
+
+                                    <div class="portal-card__content--column-actions margin-bottom-20">
+                                        <a class="mdc-button mdc-button--raised mdc-theme--secondary-bg mdc-theme--text-primary-on-secondary"
+                                            data-mdc-auto-init="MDCRipple" routerLink="/auth/register">
+                                            SOLICITAR NOVO ACESSO
+                                        </a>
+                                    </div>
+                                    <section class="LEFT">
+
+
+                                        <p class="mdc-typography--body2">
+                                            * A aprovação de novos usuários e redefinições de senhas deverão ser
+                                            tratados pelo administrador do sistema.
+
+                                        </p>
+                                        <p class="mdc-typography--body2">
+                                            Email: mktautomationbi@santander.com.br<br>
+                                            Carla: Cel/Whatsapp: (11) 98926-2563<br>
+                                            Thife: Tel: (11) 3553-5421 / Whatsapp: (11) 99923-2856
+
+
+                                        </p>
+
+                                    </section>
+                                </div>
+                            </div>
+
+                            <div class="mdc-layout-grid__cell--span-6">
+                                <div class="portal-card__content portal-card__content--column">
+                                    <form #formLogin="ngForm" (submit)="send()" autocomplete="off"
+                                        style="    margin-top: 142px;">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--dense">
+                                            <input #email (keyup)="nextOnEnter($event)" [(ngModel)]="user.email"
+                                                autocomplete="off" class="mdc-text-field__input" email id="email"
+                                                name="email"
+                                                onfocus="if (this.hasAttribute('readonly')) {this.removeAttribute('readonly');this.blur();    this.focus();  }"
+                                                readonly required type="email">
+                                            <label class="mdc-floating-label" for="email">Email </label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--dense">
+                                            <input #password (keyup)="sendOnEnter($event)" [(ngModel)]="user.password"
+                                                autocomplete="off" class="mdc-text-field__input" id="password"
+                                                name="password"
+                                                onfocus="if (this.hasAttribute('readonly')) {this.removeAttribute('readonly');this.blur();    this.focus();  }"
+                                                readonly required type="password">
+                                            <label class="mdc-floating-label" for="password">Senha </label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+
+                                        <p class="mdc-typography--body2 float--right">
+                                            <small>Os campos marcados com * são obrigatórios.</small>
+                                        </p>
+                                    </form>
+
+                                    <div [ngClass]="{disabled: !formLogin.valid}"
+                                        class="portal-card__content--column-actions">
+                                        <button (click)="send()" [disabled]="!formLogin.valid" id="btn-login"
+                                            class="mdc-button mdc-button--raised mdc-button--portal-login">Login
+                                        </button>
+                                        <a *ngIf="false" class="mdc-button mdc-button--portal-forgot-pwd"
+                                            routerLink="/auth/forgot-password">Esqueceu sua senha?</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

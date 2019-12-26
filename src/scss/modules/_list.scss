@@ -1,0 +1,28 @@
+
+.portal-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.portal-list li {
+    text-indent: 24px;
+    margin-bottom: 12px;
+}
+
+.portal-list li:before {
+    content: "\E876   ";
+    font-family: "Material Icons";
+    position: relative;
+    font-size: 12px;
+    line-height: 21px;
+    color: var(--mdc-theme-secondary-light, red);
+    left: -12px;
+}
+
+.portal-list.portal-list--columns-2 {
+    column-count: 2;
+}
+
+.mdc-menu__items.mdc-list {
+    padding: 0;
+}

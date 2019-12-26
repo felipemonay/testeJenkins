@@ -1,0 +1,77 @@
+<aside [ngClass]="{'mdc-dialog--open': show}" class="mdc-dialog">
+    <div class="mdc-dialog__surface" style="max-width: 100% ;">
+        <header class="mdc-dialog__header">
+            <h2 class="mdc-dialog__header__title">Digital</h2>
+        </header>
+
+        <section class="mdc-dialog__body mdc-dialog__body--scrollable"
+                 style="min-height: auto; max-height: auto; height: auto; padding:0; margin:0">
+            <div class="mdc-layout-grid" style="padding: 0px 25px;; background: #f9f9f9" >
+                <div class="mdc-layout-grid__inner">
+                    <div
+                        class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                        <div class="mdl-data-table--responsible" style="padding: 0 !important;">
+                            <table class="mdl-data-table portal-table-tab-panel portal-table-tab-panel--active" style="background: #fff">
+                                <thead>
+                                <tr>
+                                    <th style="min-width:50px; padding:1px 10px; border: 1px solid #ccc;" *ngIf="excelData.isRequired('status')" class="text--left">Status do Anúncio</th>
+                                    <th style="min-width:50px; padding:1px 10px; border: 1px solid #ccc;" *ngIf="excelData.isRequired('base_url')" class="text--left">URL Base</th>
+                                    <th style="min-width:50px; padding:1px 10px; border: 1px solid #ccc;" *ngIf="excelData.isRequired('channel')" class="text--left">Canal</th>
+                                    <th style="min-width:50px; padding:1px 10px; border: 1px solid #ccc;" *ngIf="excelData.isRequired('media_type')" class="text--left">Tipo Mídia</th>
+                                    <th style="min-width:50px; padding:1px 10px; border: 1px solid #ccc;" *ngIf="excelData.isRequired('format')" class="text--left">Formato</th>
+                                    <th style="min-width:50px; padding:1px 10px; border: 1px solid #ccc;" *ngIf="excelData.isRequired('duration')" class="text--left">Tempo (segundos)</th>
+                                    <th style="min-width:50px; padding:1px 10px; border: 1px solid #ccc;" *ngIf="excelData.isRequired('correspondence')" class="text--left">Correspondência</th>
+                                    <th style="min-width:50px; padding:1px 10px; border: 1px solid #ccc;" *ngIf="excelData.isRequired('segmentation_type')" class="text--left">Tipo Segmentação</th>
+                                    <th style="min-width:50px; padding:1px 10px; border: 1px solid #ccc;" *ngIf="excelData.isRequired('segmentation')" class="text--left">Segmentação</th>
+                                    <th style="min-width:50px; padding:1px 10px; border: 1px solid #ccc;" *ngIf="excelData.isRequired('purchase_type')" class="text--left">Tipo de compra</th>
+                                    <th style="min-width:50px; padding:1px 10px; border: 1px solid #ccc;" *ngIf="excelData.isRequired('negociation_type')" class="text--left">Tipo Negociação</th>
+                                    <th style="min-width:50px; padding:1px 10px; border: 1px solid #ccc;" *ngIf="excelData.isRequired('creative_line')" class="text--left">Criativo</th>
+                                    <th style="min-width:50px; padding:1px 10px; border: 1px solid #ccc;" *ngIf="excelData.isRequired('fl_using_new_url')" class="text--left">Utilizar URL 3.0</th>
+                                    <th style="min-width:50px; padding:1px 10px; border: 1px solid #ccc;" *ngIf="excelData.isRequired('agency_field')" class="text--left">Campo Agência</th>
+
+                                </tr>
+                                </thead>
+                                <tbody *ngIf="_group?.digital && _group?.digital.length; else empty">
+                                <tr *ngFor="let digital of _group?.digital">
+                                    <td style="padding:1px 10px;border: 1px solid #ccc;" *ngIf="excelData.isRequired('status')">{{ digital.status }}</td>
+                                    <td style="padding:1px 10px;border: 1px solid #ccc;" *ngIf="excelData.isRequired('base_url')">{{ digital.base_url }}</td>
+                                    <td style="padding:1px 10px;border: 1px solid #ccc;" *ngIf="excelData.isRequired('channel')">{{ digital.channel }}</td>
+                                    <td style="padding:1px 10px;border: 1px solid #ccc;" *ngIf="excelData.isRequired('media_type')">{{ digital.media_type }}</td>
+                                    <td style="padding:1px 10px;border: 1px solid #ccc;" *ngIf="excelData.isRequired('format')">{{ digital.format }}</td>
+                                    <td style="padding:1px 10px;border: 1px solid #ccc;" *ngIf="excelData.isRequired('duration')">{{ digital.duration }}</td>
+                                    <td style="padding:1px 10px;border: 1px solid #ccc;" *ngIf="excelData.isRequired('correspondence')">{{ digital.correspondence }}</td>
+                                    <td style="padding:1px 10px;border: 1px solid #ccc;" *ngIf="excelData.isRequired('segmentation_type')">{{ digital.segmentation_type }}</td>
+                                    <td style="padding:1px 10px;border: 1px solid #ccc;" *ngIf="excelData.isRequired('segmentation')">{{ digital.segmentation }}</td>
+                                    <td style="padding:1px 10px;border: 1px solid #ccc;" *ngIf="excelData.isRequired('purchase_type')">{{ digital.purchase_type }}</td>
+                                    <td style="padding:1px 10px;border: 1px solid #ccc;" *ngIf="excelData.isRequired('negociation_type')">{{ digital.negociation_type }}</td>
+                                    <td style="padding:1px 10px;border: 1px solid #ccc;" *ngIf="excelData.isRequired('creative_line')">{{ digital.creative_line }}</td>
+                                    <td style="padding:1px 10px;border: 1px solid #ccc;" *ngIf="excelData.isRequired('fl_using_new_url')">{{ digital.fl_using_new_url }}</td>
+                                    <td style="padding:1px 10px;border: 1px solid #ccc;" *ngIf="excelData.isRequired('fl_using_new_url')">{{ digital.agency_field }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mdc-dialog__footer">
+            <button (click)="onClose()"
+                    class="mdc-button mdc-button--raised mdc-dialog__footer__button mdc-dialog__footer__button--cancel mdc-ripple-upgraded"
+                    type="button">
+                Fechar
+            </button>
+        </footer>
+    </div>
+
+    <div (click)="onClose()" class="mdc-dialog__backdrop"></div>
+</aside>
+
+<ng-template #empty>
+    <tr>
+        <td colspan="7">
+            <p class="pd-10--top text--center">Nenhum registro cadastrado.</p>
+        </td>
+    </tr>
+</ng-template>

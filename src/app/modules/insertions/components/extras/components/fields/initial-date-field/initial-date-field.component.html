@@ -1,0 +1,13 @@
+<div class="mdc-text-field mdc-text-field--fullwidth">
+    <input [(ngModel)]="_extra.initial_date"
+           [dropSpecialCharacters]="false"
+           [id]="name" [name]="name"
+           [required]="field_required"
+           autocomplete="off" class="mdc-text-field__input" mask="99/99/9999" type="text">
+
+    <label [class.mdc-floating-label--float-above]="_extra.initial_date" [for]="name" class="mdc-floating-label">
+        {{ label }} <i [title]="help" class="fa fa-question-circle fa-lg cursor--pointer" data-toggle="tooltip"></i>
+    </label>
+
+    <div class="mdc-line-ripple"></div>
+</div>

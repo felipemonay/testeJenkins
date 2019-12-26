@@ -1,0 +1,74 @@
+<aside [ngClass]="{'mdc-dialog--open': show}" class="mdc-dialog">
+    <div class="mdc-dialog__surface">
+        <header class="mdc-dialog__header">
+            <h2 class="mdc-dialog__header__title">Atenção!</h2>
+        </header>
+        <section class="mdc-dialog__body mdc-dialog__body--scrollable" style="max-height:435px;">
+            <div class="mdc-layout-grid">
+                <div class="mdc-layout-grid__inner">
+                    <div class="mdc-layout-grid__cell--span-12 ">
+                        <p>O Veículo(CP) e o Tipo de Segmentação(SP) precisam ser preenchidos com os valores disponíveis
+                            nestas listas quando houver produto do tipo CARTÃO ou CONTA CORRENTE cadastrado em uma linha
+                            criativo.</p>
+                    </div>
+
+                    <div class="mdc-layout-grid__cell--span-7 mdc-elevation--z1 ">
+                        <p class="mdc-typography--button "
+                           style="text-align:center;     border-bottom: 1px solid grey !important;">CP</p>
+                        <div style="height:250px; overflow:scroll">
+                            <table class="mdl-data-table portal-table-tab-panel portal-table-tab-panel--active">
+                                <thead>
+                                <tr>
+                                    <th style="min-width: 40px; width: 40px;">ID</th>
+                                    <th>VALOR</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let item of cpData">
+                                    <td>{{ item.id }}</td>
+                                    <td>{{ item.name }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="mdc-layout-grid__cell--span-5 mdc-elevation--z1">
+                        <p class="mdc-typography--button"
+                           style="text-align:center;    border-bottom: 1px solid grey !important;">SP</p>
+                        <div style="height:250px; overflow:scroll">
+                            <table class="mdl-data-table portal-table-tab-panel portal-table-tab-panel--active">
+                                <thead>
+                                <tr>
+                                    <th style="min-width: 40px; width: 40px;">ID</th>
+                                    <th>VALOR</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let item of spData">
+                                    <td>{{ item.name }}</td>
+                                    <td>{{ item.id }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+        <footer class="mdc-dialog__footer">
+            <button (click)="close()"
+                    class="mdc-button mdc-button--raised mdc-dialog__footer__button mdc-dialog__footer__button--cancel mdc-ripple-upgraded"
+                    type="button">
+                Fechar
+            </button>
+        </footer>
+    </div>
+    <div (click)="close()" class="mdc-dialog__backdrop"></div>
+</aside>

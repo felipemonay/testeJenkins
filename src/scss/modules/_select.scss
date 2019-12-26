@@ -1,0 +1,108 @@
+// Common select
+.mdc-select {
+    width: 100%;
+
+    &:not(.mdc-select--disabled) {
+        .mdc-select__native-control {
+            border-bottom-color: rgba(0, 0, 0, .12);
+
+            &:hover {
+                border-bottom-color: rgba(0, 0, 0, .12);
+            }
+        }
+
+        &.ng-invalid.ng-touched.ng-pristine:not(.ng-untouched) {
+            border-bottom-color: var(--mdc-theme-secondary-dark, red);
+        }
+    }
+}
+
+.mdc-select .mdc-floating-label, .mdc-text-field--textarea .mdc-floating-label {
+    pointer-events: all;
+}
+
+
+// Dropdown select
+
+.mdc-select__dropdown {
+    display: inline-flex;
+    position: relative;
+    box-sizing: border-box;
+    height: 56px;
+    background-repeat: no-repeat;
+    background-position: right 8px bottom 12px;
+    width: 100%;
+
+    &.mdc-select__dropdown--multiple {
+        .mdc-floating-label--float-above {
+            transform: translateY(-120%) scale(.75);
+        }
+
+        ng-select {
+            & > div {
+                div.multiple {
+                    overflow: auto;
+                    height: 30px;
+                }
+            }
+        }
+    }
+
+    .mdc-floating-label {
+        //pointer-events: none;
+        color: rgba(0, 0, 0, .6);
+    }
+
+    ng-select {
+        padding: 20px 0 4px 0;
+        font-family: Roboto, sans-serif;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        font-size: 1rem;
+        line-height: 1.75rem;
+        font-weight: 400;
+        letter-spacing: .00937em;
+        text-decoration: inherit;
+        text-transform: inherit;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid;
+        border-radius: 0;
+        outline: none;
+        background-color: transparent;
+        white-space: nowrap;
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-bottom-color: rgba(0, 0, 0, 0.12);
+
+        & > div {
+            outline: none;
+            border: none;
+
+            div.single {
+                outline: none;
+
+                div.placeholder {
+                    outline: none;
+                }
+
+                div.value {
+                    padding: 0;
+
+                    .ng-star-inserted {
+                        font-size: 1rem;
+                        font-family: 'Ubuntu Condensed', sans-serif;
+                    }
+                }
+            }
+        }
+
+        select-dropdown {
+            & > div.options {
+                max-height: 300px;
+            }
+        }
+    }
+}

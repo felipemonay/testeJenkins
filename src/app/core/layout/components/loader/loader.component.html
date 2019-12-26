@@ -1,0 +1,14 @@
+<div *ngIf="layoutService.getLoader() | async" class="portal-loader">
+    <div class="portal-loader-logo-wrapper">
+        <div class="portal-loader-logo">
+            <div class="portal-loader-logo__circle portal-loader-logo__circle__bottom"></div>
+            <div class="portal-loader-logo__circle portal-loader-logo__circle__top"></div>
+            <div class="portal-loader-logo__circle portal-loader-logo__circle__left"></div>
+            <div class="portal-loader-logo__circle portal-loader-logo__circle__right"></div>
+            <div class="portal-loader-logo__circle portal-loader-logo__circle__inner"></div>
+        </div>
+        <div class="portal-loader-logo-text">
+            Aguarde...
+        </div>
+    </div>
+</div>

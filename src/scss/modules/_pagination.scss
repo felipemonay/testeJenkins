@@ -1,0 +1,12 @@
+// Bootstrap
+@import "~bootstrap/scss/pagination";
+
+.pagination {
+    li {
+        button.active {
+            color: #23527c;
+            background-color: #eee;
+            border-color: #ddd;
+        }
+    }
+}

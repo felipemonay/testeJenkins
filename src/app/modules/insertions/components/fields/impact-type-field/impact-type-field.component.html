@@ -1,0 +1,14 @@
+<div class="mdc-select__dropdown">
+    <ng-select #impact_type (deselected)="onDeselected()" (selected)="onSelect($event)"
+               [allowClear]="!mediaModuleService.isEqual(_insertion.media, 'DIGITAL') && _insertion.pi_type_id !== 7"
+               [disabled]="(this.status.isConfirmed ||  this.status.isDuplicated) && mediaModuleService.isEqual(_insertion.media, 'DIGITAL')"
+               [ngClass]="{'disabled':(this.status.isConfirmed ||  this.status.isDuplicated) && mediaModuleService.isEqual(_insertion.media, 'DIGITAL')}"
+               [options]="impactTypes"></ng-select>
+
+    <label [class.mdc-floating-label--float-above]="_insertion.impact_type_id" class="mdc-floating-label">
+        {{ label }} <i [title]="help" class="fa fa-question-circle fa-lg cursor--pointer" data-toggle="tooltip"></i>
+        <span *ngIf="mediaModuleService.isEqual(_insertion.media, 'DIGITAL') && _insertion.pi_type_id !== 7">*</span>
+    </label>
+
+    <div class="mdc-line-ripple"></div>
+</div>

@@ -1,0 +1,186 @@
+<div class="portal-profile-container mdc-theme--background-light mdc-theme--text-primary-on-background">
+    <div>
+        <div class="portal-profile__header">
+            <div class="portal-profile__header-content">
+                <i class="fa fa-user-circle-o fa-6x portal-profile__avatar hidden mg-16--right"></i>
+
+                <div class="portal-profile__header-text"><h1>Meu Perfil</h1>
+                    <p>Edite suas informações pessoais e altere sua senha aqui.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="portal-profile__content portal-widget__card">
+            <section class="portal-pages__content">
+                <div
+                    class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone portal-pages__content-inner"
+                    style="margin-top: 0; padding: 0;">
+                    <nav
+                        class="mdc-tab-bar mdc-tab-bar--portal-border-bottom mdc-tab-bar--portal-display-block mdc-tab-bar-upgraded">
+                        <a (click)="showFormProfile()" [ngClass]="{'mdc-tab--active': tabs.formProfile}"
+                           class="mdc-tab mdc-tab--portal-link">
+                            <i class="fa fa-user-circle-o"></i> &nbsp; Perfil
+                        </a>
+                        <a (click)="showFormPassword()" [ngClass]="{'mdc-tab--active': tabs.formPassword}"
+                           class="mdc-tab mdc-tab--portal-link" style="width: 50%;">
+                            <i aria-hidden="true" class="fa fa-lock"></i> &nbsp; Senha
+                        </a>
+
+                        <span [ngStyle]="{'left': tabs.formPassword ? '50%' : '0'}"
+                              class="mdc-tab-bar__indicator"
+                              style="transform: translateX(0px) scale(0.5, 1); visibility: visible; transition: 0.5s all;"></span>
+                    </nav>
+
+                    <div *ngIf="tabs.formProfile">
+                        <form #formUpdateUser="ngForm" (submit)="send()" autocomplete="off">
+                            <div class="mdc-layout-grid">
+                                <div class="mdc-layout-grid__inner">
+                                    <div
+                                        class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth">
+                                            <input #name [(ngModel)]="user.name" autocomplete="off"
+                                                   class="mdc-text-field__input"
+                                                   id="name"
+                                                   name="name" required type="text">
+                                            <label [class.mdc-floating-label--float-above]="name.value"
+                                                   class="mdc-floating-label"
+                                                   for="name">Nome </label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth">
+                                            <input #email [(ngModel)]="user.email" autocomplete="off"
+                                                   class="mdc-text-field__input"
+                                                   disabled
+                                                   email id="email" name="email" required type="email">
+                                            <label [class.mdc-floating-label--float-above]="email.value"
+                                                   class="mdc-floating-label "
+                                                   for="email">Email </label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth">
+                                            <input #cpf [(ngModel)]="user.cpf" autocomplete="off"
+                                                   class="mdc-text-field__input"
+                                                   id="cpf"
+                                                   mask="999.999.999-99" name="cpf" required type="text">
+                                            <label [class.mdc-floating-label--float-above]="cpf.value"
+                                                   class="mdc-floating-label"
+                                                   for="cpf">CPF </label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth">
+                                            <input #phone [(ngModel)]="user.phone" autocomplete="off"
+                                                   class="mdc-text-field__input"
+                                                   id="phone"
+                                                   mask="(99) 9 9999-9999" name="phone" required type="text">
+                                            <label [class.mdc-floating-label--float-above]="phone.value"
+                                                   class="mdc-floating-label "
+                                                   for="phone">Telefone </label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth">
+                                            <input #office [(ngModel)]="user.office" autocomplete="off"
+                                                   class="mdc-text-field__input"
+                                                   id="office"
+                                                   name="office" required type="text">
+                                            <label [class.mdc-floating-label--float-above]="office.value"
+                                                   class="mdc-floating-label "
+                                                   for="office">Cargo </label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                                        <p class="mdc-typography--body2 float--right">
+                                            <small>Os campos marcados com * são obrigatórios.</small>
+                                        </p>
+                                    </div>
+
+                                    <div
+                                        class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                                        <div [ngClass]="{disabled: !formUpdateUser.valid}" class="float--right">
+                                            <button [disabled]="!formUpdateUser.valid"
+                                                    class="mdc-button mdc-button--outlined">
+                                                Salvar alterações &nbsp; <i class="fa fa-send-o"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div *ngIf="tabs.formPassword">
+                        <form #formUpdatePasswordUser="ngForm" (submit)="sendPassword()" autocomplete="off">
+                            <div class="mdc-layout-grid">
+                                <div class="mdc-layout-grid__inner">
+                                    <div
+                                        class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth">
+                                            <input #password [(ngModel)]="user.password" autocomplete="off"
+                                                   class="mdc-text-field__input" id="password" name="password"
+                                                   required
+                                                   type="password">
+                                            <label [class.mdc-floating-label--float-above]="password.value"
+                                                   class="mdc-floating-label"
+                                                   for="password">Senha </label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth">
+                                            <input #password_confirmation [(ngModel)]="user.password_confirmation"
+                                                   autocomplete="off" class="mdc-text-field__input"
+                                                   id="password_confirmation" name="password_confirmation" required
+                                                   type="password">
+                                            <label [class.mdc-floating-label--float-above]="password_confirmation.value"
+                                                   class="mdc-floating-label"
+                                                   for="password_confirmation">Confirmar
+                                                senha</label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                                        <p class="mdc-typography--body2 float--right">
+                                            <small>Os campos marcados com * são obrigatórios.</small>
+                                        </p>
+                                    </div>
+
+                                    <div
+                                        class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                                        <div [ngClass]="{disabled: !formUpdatePasswordUser.valid}" class="float--right">
+                                            <button [disabled]="!formUpdatePasswordUser.valid"
+                                                    class="mdc-button mdc-button--outlined">
+                                                Salvar Alterações &nbsp; <i class="fa fa-send-o"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

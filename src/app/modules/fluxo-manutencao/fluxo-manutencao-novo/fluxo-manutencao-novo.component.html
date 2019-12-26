@@ -1,0 +1,97 @@
+<div class="portal-main__content mdc-theme--background mdc-theme--text-primary-on-background">
+  <div class="portal-pages__header">
+    <i class="fa fa-envelope-o fa-3x contact-page--icon"></i>
+  </div>
+
+  <section class="portal-pages__content">
+    <div class="mdc-layout-grid">
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell--span-1-desktop"></div>
+
+        <div
+          class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone portal-pages__content-inner"
+          style="margin-top: -357px">
+          <h3 class="portal-pages__heading">Fluxo Manutenção PI ou STS</h3>
+
+          <form #formContact="ngForm" (submit)="send()" autocomplete="off">
+            <div class="mdc-layout-grid">
+              <div class="mdc-layout-grid__inner">
+                <div
+                  class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-12-phone">
+                  <div class="mdc-select">
+                    <select [(ngModel)]="fluxo.subject" class="mdc-select__native-control" id="contact_subject"
+                      name="contact_subject" style="padding-bottom: 8px" async required>
+                      <option value=""></option>
+                      <option *ngFor="let fileType of fileTypes" [value]="fileType?.name">
+                        {{ fileType?.name }}
+                      </option>
+                    </select>
+                    <label class="mdc-floating-label portal-color-default" for="contact_subject">Selecione o
+                      assunto*</label>
+                  </div>
+                </div>
+                <div
+                  class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                  <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--fullwidth">
+                    <textarea [(ngModel)]="fluxo.description" class="mdc-text-field__input" id="contact_description"
+                      name="contact_description" rows="3"></textarea>
+                    <label [class.mdc-floating-label--float-above]="fluxo.description" class="mdc-floating-label"
+                      for="contact_description">Mensagem </label>
+                    <div class="mdc-line-ripple"></div>
+                  </div>
+                </div>
+
+                <div
+                  class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                  <p class="mdc-typography--body2 float--right">
+                    <small>Os campos marcados com * são obrigatórios.</small>
+                  </p>
+                </div>
+                <div
+                  class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                  <div class="float--left">
+                    <button type="button" class="mdc-button mdc-button--outlined fix-btn-fluxo-manutencao" style="margin-right: 1em"
+                      (click)="getFile(fluxo.subject)">
+                      Download arquivo &nbsp; <i class="fa fa-download"></i>
+                    </button>
+                    <input id="upload-file" hidden type="file" #uploader (change)="uploadFile($event)" />
+                    <button type="button" class="mdc-button mdc-button--outlined fix-btn-fluxo-manutencao" (click)="uploader.click()">
+                      Upload arquivo &nbsp; <i class="fa fa-upload"></i>
+                    </button>
+                    <label for="file-name">&nbsp;{{ fluxo?.file?.name }}</label>
+                  </div>
+                  <div [ngClass]="{disabled: !formContact.valid || fluxo?.file ===''}" class="float--right">
+                    <button type="submit" [disabled]="!formContact.valid || fluxo?.file ===''" class="mdc-button mdc-button--outlined fix-btn-fluxo-manutencao">
+                      Enviar &nbsp; <i class="fa fa-send-o"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+              <p>
+                  <small>
+                  Esse é um canal para envio de informações pontuais ao <b>Marketing Santander</b>, relacionadas ao STS e/ou Sistema AD.
+                  Deverá ser utilizado apenas em casos de manutenção de chave de inserção e/ou PI.
+                  </small>
+              </p>
+
+              <p>
+                  <small>
+                  Baixe sempre a planilha com layout mais atualizado no botão <b>DOWNLOAD ARQUIVO</b>.
+                  E após preenchimento dos dados necessários, disponibilize o mesmo através do botão <b>UPLOAD ARQUIVO</b>.
+                  Clique em <b>ENVIAR</b>. Assim que recebido / atendido seu pedido, você será notificado via e-mail.
+                  </small>
+              </p>
+              <p>
+                  <small>
+                  Em caso de dúvida, clique <a href="https://sts.midia.zone/contacts/create">aqui</a> para acionar os responsáveis.
+                  </small>
+              </p>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

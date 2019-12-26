@@ -1,0 +1,119 @@
+<aside [ngClass]="{'mdc-dialog--open': _show}" class="mdc-dialog"
+       onscroll="function(e){e.stopPropagation(); e.preventDefault();}">
+
+    <div class="mdc-dialog__surface" style="max-width: 100%;">
+
+
+        <header class="mdc-dialog__header">
+
+
+            <h2 class=" mdc-typography mdc-typography--headline6 " style="margin: 0;line-height: 1rem;">
+                Digital<br><br>
+                <span class=" mdc-typography mdc-typography--subtitle2">
+                        <strong>Inserção:</strong> {{ _insertion.id}} | {{ _insertion.campaign_name}}
+                </span>
+                <br>
+                <span class=" mdc-typography mdc-typography--subtitle2">
+                     <strong>Linha Criativo (Título PI): </strong> {{ group.id}} | {{ group.name}}
+                </span></h2>
+
+
+        </header>
+
+        <form (submit)="send()" autocomplete="off">
+            <section class="mdc-dialog__body mdc-dialog__body--scrollable"
+                     style="min-height: auto; max-height: none; height: auto; overflow-x: hidden;padding:0">
+                <div class="mdc-layout-grid" style="padding: 0 !important;">
+                    <div class="mdc-layout-grid__inner">
+                        <div
+                            class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+
+                            <!--<h4>Regras de preenchimento:</h4>-->
+                            <!--<p>&nbsp;</p>-->
+
+
+                            <hot-table #_handsontable
+                                       [afterChange]="hotAfterChange"
+                                       [afterSelection]="hotAfterSelection"
+                                       [beforeChange]="hotBeforeChange"
+                                       [colHeaders]="true"
+                                       [columnSorting]="true"
+                                       [columns]="columns"
+                                       [contextMenu]="false"
+                                       [minRows]="100"
+                                       [minSpareRows]="100"
+                                       [data]="[]"
+                                       [dropdownMenu]="true"
+                                       [filters]="true"
+                                       [height]="500"
+                                       [hotId]="instanceName"
+                                       [language]="'pt-BR'"
+                                       [licenseKey]="'non-commercial-and-evaluation'"
+                                       [observeChanges]="true"
+                                       [outsideClickDeselects]="false"
+                                       [preventOverflow]="'horizontal'"
+                                       [rowHeaders]="true"
+                                       [stretchH]="'all'"
+                                       [undo]="false"
+                                       [beforeKeyDown]="notDeleteRow"
+                                       [allowInsertRow]="false"
+
+
+                                       class="hot mg-10--top text-sm-left">
+                            </hot-table>
+
+                            <div class="mg-10--bottom mg-10--bottom">
+
+                                <div #alert_text_valid class="alert alert--danger " id="alert_text_valid" style="padding: 3px;"></div>
+                                <div #alert_text_duplicated class="alert alert--danger " id="alert_text_duplicated" style="padding: 3px;"></div>
+                                <div #alert_text_empty class="alert alert--danger " id="alert_text_empty" style="padding: 3px;"></div>
+
+                                <div #alert_midia_correpondence_search class="alert alert--danger " id="alert_midia_correpondence_search" style="padding: 3px;"></div>
+                                <div #alert_midia_correpondence_not_search class="alert alert--danger " id="alert_midia_correpondence_not_search" style="padding: 3px;"></div>
+                                <div #alert_channel_segmentacao class="alert alert--danger " id="alert_channel_segmentacao" style="padding: 3px;"></div>
+                                <!-- <div #alert_views_midia class="alert alert--danger " id="alert_views_midia" style="padding: 3px;"></div> -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="mdc-dialog__footer">
+                <!-- <i *ngIf="isSpinner" style="color: #f10007;margin-right: 0.8em;" class="fa fa-spinner fa-pulse fa-fw"></i> -->
+                <!-- <span *ngIf="isLoading">Aguarde, validando linhas... </span>
+                <span *ngIf="isSaving">Aguarde, salvando linhas... </span> -->
+                <button (click)="clearSelection()"
+                        [disabled]=" _insertion.confirmation"
+                        class="mdc-button mdc-button--raised mdc-dialog__footer__button mdc-dialog__footer__button--cancel mdc-ripple-upgraded"
+                        type="button">
+                    <i class="fa fa-eraser"></i> Limpar todos os registros
+                </button>
+
+                <button (click)="close(true)"
+                        class="mdc-button mdc-button--raised mdc-dialog__footer__button mdc-dialog__footer__button--cancel mdc-ripple-upgraded"
+                        type="button">
+                    Cancelar
+                </button>
+
+                <button
+                    [disabled]="hasAlertMessage"
+                    class="mdc-button mdc-button--outlined mdc-dialog__footer__button mdc-dialog__footer__button--cancel mdc-ripple-upgraded"
+                    type="submit">
+                    <span *ngIf="action === 'create'">Cadastrar</span>
+                    <span *ngIf="action === 'update'">Salvar alterações</span>
+
+                    &nbsp; <i class="fa fa-send-o"></i>
+                </button>
+            </footer>
+        </form>
+
+        <app-modal-wizard-excel style="z-index:200;" (doClose)="closeWizard($event)" *ngIf="modalShow.wizard" [insertion]="_insertion" [group]="group" [hotInstance]="hotInstance"></app-modal-wizard-excel>
+
+    </div>
+
+
+    <div (click)="close(false)" class="mdc-dialog__backdrop"></div>
+
+
+</aside>

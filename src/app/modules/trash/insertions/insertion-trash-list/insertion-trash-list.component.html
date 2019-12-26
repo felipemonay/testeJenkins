@@ -1,0 +1,141 @@
+<div
+    class="portal-main__content mdc-layout-grid--fullheight mdc-theme--background mdc-theme--text-primary-on-background">
+    <div class="mdc-layout-grid portal-dashboard">
+        <div class="mdc-layout-grid__inner">
+            <div
+                class="portal-widget mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                <h3 class="portal-widget__heading mdc-typography--subheading2">
+                    Listagem de <strong>Chaves de Inserção Excluídas</strong>
+                    <span class="float--right">
+                        <button (click)="clearSearch()"
+                            class="mdc-button mdc-button--outlined mg-4--horizontal mg-n-8--top  "
+                            style="height:23px; width: 122.39px;">Limpar filtros
+                        </button>
+                    </span>
+                </h3>
+
+
+                <div class="mg-30--bottom mg-10--top">
+                    <div class="alert alert--warning" id="alert-insercoes-excluidas">Atenção, esses registros estão excluídos!</div>
+                </div>
+
+
+                <div class="mdc-card portal-widget__card mdc-card--portal-fullheight mdc-card--portal-space-between">
+                    <div class="mdl-data-table--responsible">
+                        <table class="mdl-data-table portal-table-tab-panel portal-table-tab-panel--active"
+                        id="table-insercoes-excluidas">
+                            <thead>
+                                <tr class="text--left">
+                                    <th>
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded"
+                                            style="max-width: 60px;">
+                                            <input (keyup)="searching()" [(ngModel)]="search.insertion_id"
+                                                autocomplete="off" class="mdc-text-field__input"
+                                                id="search_insertion_id" name="search_insertion_id" type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                [ngClass]="(search.insertion_id !== null && search.insertion_id !== '')? 'mdc-floating-label mdc-floating-label--float-above':''"
+                                                for="search_insertion_id">ID Inserção</label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.campaign_name"
+                                                autocomplete="off" class="mdc-text-field__input"
+                                                id="search_campaign_name" name="search_campaign_name" type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                [ngClass]="(search.campaign_name !== null && search.campaign_name !== '')? 'mdc-floating-label mdc-floating-label--float-above':''"
+                                                for="search_campaign_name">Nome da Campanha</label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.pi_number"
+                                                autocomplete="off" class="mdc-text-field__input" id="search_pi_number"
+                                                name="search_pi_number" type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                [ngClass]="(search.pi_number !== null && search.pi_number !== '')? 'mdc-floating-label mdc-floating-label--float-above':''"
+                                                for="search_pi_number">Número PI</label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.reference_date"
+                                                autocomplete="off" class="mdc-text-field__input"
+                                                id="search_reference_date" name="search_reference_date" type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                [ngClass]="(search.reference_date !== null && search.reference_date !== '')? 'mdc-floating-label mdc-floating-label--float-above':''"
+                                                for="search_reference_date">Referência</label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="mdc-select">
+                                            <select (change)="searching()" [(ngModel)]="search.company_id"
+                                                class="mdc-select__native-control" id="search_company_id"
+                                                name="company_id" style="padding-bottom: 8px">
+                                                <option value=""></option>
+                                                <option *ngFor="let company of companies" [value]="company?.id">
+                                                    {{ company?.name }}</option>
+                                            </select>
+                                            <label class="mdc-floating-label portal-color-default"
+                                            [ngClass]="(search.company_id !== null && search.company_id !== '')? 'mdc-floating-label mdc-floating-label--float-above':''"
+                                                for="search_company_id">Empresa </label>
+                                            <!-- <div class="mdc-line-ripple"></div> -->
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.deleted_at"
+                                                autocomplete="off" class="mdc-text-field__input" id="search_deleted_at"
+                                                minlength="10" maxlength="10"
+                                                mask="00/00/0000"
+                                                name="search_deleted_at" type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                [ngClass]="(search.deleted_at !== null && search.deleted_at !== '')? 'mdc-floating-label mdc-floating-label--float-above':''"
+                                                for="search_deleted_at">Data de exclusão</label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+                                    </th>
+                                    <!-- Fim dos filtros -->
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="insertions.data.length; else empty">
+                                <tr *ngFor="let insertion of insertions.data">
+                                    <td>
+                                        {{ insertion?.id }}
+                                        <span *ngIf="insertion.confirmation"><i class="fa fa-check-square-o"></i></span>
+                                        <span *ngIf="!insertion.confirmation"><i class="fa fa-square-o"></i></span>
+                                    </td>
+                                    <td>{{ insertion?.campaign_name }}</td>
+                                    <td>{{ insertion?.pi_number }}</td>
+                                    <td>{{ insertion?.reference_date | date : 'MM/yyyy' }}</td>
+                                    <td>{{ insertion?.user?.company.name }}</td>
+                                    <td>{{ insertion?.deleted_at | dateFormat : 'dd/mm/yyyy HH:MM:ss' }}</td>
+                                    <td class="text--center">
+                                        <button [queryParams]="{id: insertion.id}"
+                                            class="mdc-button  mdc-button---xsmall" routerLink="/trash/insertions/show"
+                                            title="Visualizar"><i class="fa fa-eye fa-lg color-green"></i></button>
+                                        <!--<button (click)="confirm(insertion)" class="mdc-button  mdc-button-&#45;&#45;xsmall " title="Restaurar"><i class="fa fa-undo fa-lg color-orange"></i></button>-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <app-pagination (navigate)="getInsertions($event)" [_data]="insertions" class="align--center">
+                    </app-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #empty>
+    <tr>
+        <td class="text--center" colspan="7">Nenhum resultado encontrado!</td>
+    </tr>
+</ng-template>

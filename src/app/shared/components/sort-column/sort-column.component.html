@@ -1,0 +1,13 @@
+<span (click)="change('desc')" *ngIf="direction === ''">
+    <i aria-hidden="true" class="fa fa-sort"></i>
+</span>
+
+<span (click)="change('asc')" *ngIf="direction === 'desc'" class="sort-direction">
+    <i aria-hidden="true" class="fa fa-sort-asc sort-icon sort-icon-disabled"></i>
+    <i aria-hidden="true" class="fa fa-sort-desc sort-icon"></i>
+</span>
+
+<span (click)="change('')" *ngIf="direction === 'asc'" class="sort-direction">
+    <i aria-hidden="true" class="fa fa-sort-asc sort-icon"></i>
+    <i aria-hidden="true" class="fa fa-sort-desc sort-icon sort-icon-disabled"></i>
+</span>

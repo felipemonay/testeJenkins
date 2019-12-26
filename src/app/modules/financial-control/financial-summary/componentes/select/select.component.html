@@ -1,0 +1,9 @@
+<div class="mdc-select__dropdown">
+    <ng-select [options]="initiatives" [(ngModel)]="initiative" (click)="filter()" (deselected)="onDeselected()" (selected)="onSelect($event)" [allowClear]="true">
+    </ng-select>
+    <label [class.mdc-floating-label--float-above]="initiative" class="mdc-floating-label" style="margin-left: 5px;">
+        {{ label }} <i [title]="help" class="fa fa-question-circle fa-lg cursor--pointer" data-toggle="tooltip"></i>
+    </label>
+
+    <div class="mdc-line-ripple"></div>
+</div>

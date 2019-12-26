@@ -1,0 +1,13 @@
+<div class="mdc-text-field mdc-text-field--fullwidth">
+    <input (change)="onChange()" [(ngModel)]="model.impact" [id]="name"
+           [name]="name"
+           [required]="!!_insertion.impact_type_id  || (mediaModuleService.isEqual(_insertion.media, 'DIGITAL') && _insertion.pi_type_id !== 7)"
+           autocomplete="off" class="mdc-text-field__input" type="text">
+
+
+    <label [class.mdc-floating-label--float-above]="_insertion.impact" [for]="name" class="mdc-floating-label">
+        {{ label }} <i [title]="help" class="fa fa-question-circle fa-lg cursor--pointer" data-toggle="tooltip"></i>
+    </label>
+
+    <div class="mdc-line-ripple"></div>
+</div>

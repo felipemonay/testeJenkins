@@ -1,0 +1,78 @@
+<aside [ngClass]="{'mdc-dialog--open': show}" class="mdc-dialog">
+    <div class="mdc-dialog__surface">
+        <header class="mdc-dialog__header">
+            <h2 class="mdc-dialog__header__title">MMM linha criativo (Título PI)</h2>
+        </header>
+
+        <form #formGroup="ngForm" (submit)="send()" autocomplete="off">
+            <section class="mdc-dialog__body mdc-dialog__body--scrollable">
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        <div
+                            class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-12-phone">
+                            <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                <input [(ngModel)]="group.name"
+                                       [disabled]="group.id !== group.insertion_group_tag_id"
+                                       autocomplete="off" class="mdc-text-field__input"
+                                       id="name" name="name"
+                                       required
+                                       type="text">
+                                <label [class.mdc-floating-label--float-above]="group.name" class="mdc-floating-label"
+                                       for="name">
+                                    Nome linha criativo (Título PI)<i
+                                    class="fa fa-question-circle fa-lg cursor--pointer"
+                                    data-toggle="tooltip"
+                                    title="Informar o nome da peça(s) ou criativo(s) relacionado a essa campanha, ideal seguir padrão da PI. (Ex. [A] BORDOES, [B] BRIGAS, etc). Obrigatório no mínimo um criativo."></i>
+                                </label>
+                                <div class="mdc-line-ripple"></div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-12-phone">
+                            <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                <input [(ngModel)]="group.investment" autocomplete="off" class="mdc-text-field__input"
+                                       currencyMask
+                                       id="piece_investment" name="piece_investment" type="text">
+                                <label [class.mdc-floating-label--float-above]="group.investment"
+                                       class="mdc-floating-label"
+                                       for="piece_investment">
+                                    R$ investimento peça <i class="fa fa-question-circle fa-lg cursor--pointer"
+                                                            data-toggle="tooltip"
+                                                            title="Informar o valor líquido de mídia dessa linha criativo (Título PI). (opcional)"></i>
+                                </label>
+                                <div class="mdc-line-ripple"></div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                            <p class="mdc-typography--body2 float--right">
+                                <small>Os campos marcados com * são obrigatórios.</small>
+                            </p>
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
+            <footer class="mdc-dialog__footer">
+                <button (click)="cancel()"
+                        class="mdc-button mdc-button--raised mdc-dialog__footer__button mdc-dialog__footer__button--cancel mdc-ripple-upgraded"
+                        type="button">
+                    Cancelar
+                </button>
+
+                <button
+                    [disabled]="!formGroup.valid"
+                    class="mdc-button mdc-button--outlined mdc-dialog__footer__button mdc-dialog__footer__button--cancel mdc-ripple-upgraded">
+                    <span *ngIf="action === 'create'">Cadastrar</span>
+                    <span *ngIf="action === 'update'">Salvar alterações</span>
+
+                    &nbsp; <i class="fa fa-send-o"></i>
+                </button>
+            </footer>
+        </form>
+    </div>
+    <div (click)="close()" class="mdc-dialog__backdrop"></div>
+</aside>

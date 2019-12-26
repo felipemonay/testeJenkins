@@ -1,0 +1,13 @@
+<div class="mdc-text-field mdc-text-field--fullwidth">
+    <input [(ngModel)]="_insertion.investment" [id]="name" [name]="name"
+           required autocomplete="off"
+           class="mdc-text-field__input" currencyMask type="text">
+
+    <label [class.mdc-floating-label--float-above]="_insertion.investment && _insertion.investment !== undefined"
+           [for]="name"
+           class="mdc-floating-label">
+        {{ label }} <i [title]="help" class="fa fa-question-circle fa-lg cursor--pointer" data-toggle="tooltip"></i>
+    </label>
+
+    <div class="mdc-line-ripple"></div>
+</div>

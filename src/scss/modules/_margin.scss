@@ -1,0 +1,75 @@
+// Margin
+
+.mg {
+    margin: 10px;
+
+    @for $i from 0 through 80 {
+
+        @if $i % 2 == 0 {
+
+            // Positive margin
+
+            &-#{$i} {
+                margin: #{$i}px;
+            }
+
+            &-#{$i}--vertical {
+                margin-top: #{$i}px;
+                margin-bottom: #{$i}px;
+            }
+
+            &-#{$i}--horizontal {
+                margin-right: #{$i}px;
+                margin-left: #{$i}px;
+            }
+
+            &-#{$i}--top {
+                margin-top: #{$i}px;
+            }
+
+            &-#{$i}--right {
+                margin-right: #{$i}px;
+            }
+
+            &-#{$i}--bottom {
+                margin-bottom: #{$i}px;
+            }
+
+            &-#{$i}--left {
+                margin-left: #{$i}px;
+            }
+
+            // Negative margin
+
+            &-n-#{$i} {
+                margin: -#{$i}px;
+            }
+
+            &-n-#{$i}--vertical {
+                margin-top: -#{$i}px;
+                margin-bottom: -#{$i}px;
+            }
+
+            &-n-#{$i}--horizontal {
+                margin-right: -#{$i}px;
+                margin-left: -#{$i}px;
+            }
+
+            &-n-#{$i}--top {
+                margin-top: -#{$i}px;
+            }
+
+            &-n-#{$i}--right {
+                margin-right: -#{$i}px;
+            }
+
+            &-n-#{$i}--bottom {
+                margin-bottom: -#{$i}px;
+            }
+
+            &-n-#{$i}--left {
+                margin-left: -#{$i}px;
+            }
+        }
+    }
+}

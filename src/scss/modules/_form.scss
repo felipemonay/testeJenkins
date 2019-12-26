@@ -1,0 +1,73 @@
+
+.mdc-button {
+    font-size: 0.775rem;
+}
+
+.mdc-text-field--textarea .mdc-floating-label {
+    background-color: inherit;
+    color: inherit;
+}
+
+.mdc-floating-label {
+    font-size: 0.813rem;
+}
+
+.mdc-button:hover::before {
+    opacity: 0.08;
+}
+
+.mdc-button:disabled {
+    pointer-events: auto;
+}
+
+.mdc-button---small {
+    min-width: 35px;
+    height: 35px;
+    padding: 0;
+}
+
+.mdc-text-field--textarea:not(.mdc-text-field--disabled), .mdc-text-field--textarea:not(.mdc-text-field--disabled) .mdc-text-field__input:focus {
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+.mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background, .mdc-checkbox__native-control:enabled:indeterminate ~ .mdc-checkbox__background {
+    background-color: var(--mdc-theme-primary, #6200ee);
+    border-color: var(--mdc-theme-primary, #6200ee);
+}
+
+.mdc-text-field__input, .mdc-select_native-control {
+    margin-top: 10px;
+}
+
+.mdc-button---xsmall {
+    min-width: 20px;
+    height: 20px;
+    padding: 0 3px;
+}
+
+.mdc-label {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 0.813rem;
+}
+
+i.count {
+    position: absolute;
+    background: #41a9f4;
+    border-radius: 50%;
+    padding: 1px 1px;
+    top: 0;
+    right: 0;
+    color: #fff;
+    width: 50%;
+    font-size: 14px;
+}
+
+.mdc-button--alert-color {
+    --mdc-theme-primary: #ff8c00 !important;
+
+
+}
+
+.mdc-chip--alert-color {
+    background-color: #ff8c00 !important;
+}

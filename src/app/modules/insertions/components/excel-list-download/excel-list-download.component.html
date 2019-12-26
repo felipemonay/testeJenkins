@@ -1,0 +1,55 @@
+<div class="mdc-card demo-card demo-basic-with-header " style="padding:5px">
+    <div class="demo-card__primary">
+        <div
+            class="portal-widget mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+            <p class="portal-widget__heading mdc-typography--subheading2"><strong>Campanhas Selecionadas para Download
+                    do Arquivo Excel</strong></p>
+            <span class="float--right">
+                <button (click)="deleteAll()" class="mdc-button mdc-button--outlined mg-4--horizontal = float--right "
+                    style="height: 23px; margin-top:-31px; margin-right: 123px">Limpar Selecionadas
+                </button>
+                <button (click)="downloadExcel()"
+                    class="mdc-button mdc-button--outlined mg-4--horizontal = float--right "
+                    style="height: 23px; margin-top:-31px;">Baixar Excel
+                </button>
+            </span>
+        </div>
+    </div>
+
+    <div class="mdc-card__actions" style="padding: 0" tabindex="0">
+        <table class="mdl-data-table portal-table-tab-panel portal-table-tab-panel--active table-condensed"
+            min-width="50">
+            <thead>
+                <tr>
+                    <th class="text--left" style="padding:0 10px;" width="100">
+                        ID
+                    </th>
+                    <th class="text--left" style="padding:0 10px;" width="">
+                        Campanha
+                    </th>
+                    <th class="text--left" style="padding:0 10px;" width="">
+                        Veículo
+                    </th>
+                    <th class="text--left" style="padding:0 10px;    min-width: 40px;" width="60">
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of optionsSelected">
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.campaignName }}</td>
+                    <td> {{ item.mediaOwner }}</td>
+                    <td width="60">
+                        <button (click)="delete(item)" aria-hidden="true" class="mdc-button mdc-list-item__meta  ">
+                            <i class="fa fa-trash-o fa-lg color-red"></i>
+                        </button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

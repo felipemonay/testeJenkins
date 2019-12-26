@@ -1,0 +1,14 @@
+<div class="mdc-select__dropdown">
+    <ng-select #media_objective (selected)="onSelect($event)"
+               [disabled]="this.status.isConfirmed"
+               [ngClass]="{'disabled':this.status.isConfirmed }" [options]="objectives" required="true"></ng-select>
+
+    <label [class.mdc-floating-label--float-above]="_extra.media_objective" class="mdc-floating-label">
+        {{ label }} <i [title]="help" class="fa fa-question-circle fa-lg cursor--pointer" data-toggle="tooltip"></i> *
+    </label>
+
+    <div class="mdc-line-ripple"></div>
+</div>
+
+
+

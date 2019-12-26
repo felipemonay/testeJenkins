@@ -1,0 +1,247 @@
+<aside [ngClass]="{'mdc-drawer--open': layoutService.menu}"
+    class="mdc-drawer mdc-drawer--portal-flex-content mdc-drawer--persistent" id="left-drawer">
+    <nav class="mdc-drawer__drawer">
+        <header
+            class="mdc-toolbar mdc-theme--text-primary-on-primary-dark mdc-theme--primary-dark-0-bg mdc-toolbar--portal-no-shrink">
+            <div class="mdc-toolbar__row">
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                    <img alt="Portal" class="mdc-toolbar__logo" src="/assets/images/portal-logo.png">
+                </section>
+            </div>
+        </header>
+
+        <div class="mdc-list-group mdc-drawer__content portal-hide-scrollbars portal-navigation">
+            <nav class="mdc-list mdc-list--avatar-list portal-navigation-list">
+                <a class="mdc-list-item portal-navigation-list__item" routerLink="/dashboard"
+                    routerLinkActive="mdc-list-item--activated" id="btn-home">
+                    <span class="portal-navigation-list__text">
+                        <i class="fa fa-home fa-lg mdc-list-item__graphic portal-navigation-list__icon"></i> Home
+                    </span>
+                </a>
+            </nav>
+
+
+            <nav class="mdc-list mdc-list--avatar-list portal-navigation-list">
+                <a #users (click)="toggle(users)"
+                    [ngClass]="{'portal-navigation-list__item--open': child_active(users)}"
+                    class="mdc-list-item portal-navigation-list__item cursor--pointer" id="btn-user">
+                    <span class="portal-navigation-list__text">
+                        <i class="fa fa-user fa-lg mdc-list-item__graphic portal-navigation-list__icon"></i> Usuários
+                    </span>
+                    <i class="material-icons portal-navigation-list__icon-collapse">keyboard_arrow_down</i>
+                </a>
+
+                <nav class="mdc-list portal-navigation-list">
+                    <a [routerLinkActiveOptions]="{exact: true}" class="portal-navigation-list__item mdc-list-item"
+                        routerLink="/users" routerLinkActive="mdc-list-item--activated" id="btn-user-gerenciar">
+                        <span class="portal-navigation-list__text">
+                            <i aria-hidden="true"
+                                class="fa fa-cog mdc-list-item__graphic portal-navigation-list__icon"></i> Gerenciar
+                        </span>
+                    </a>
+
+                    <a [routerLinkActiveOptions]="{exact: true}" class="portal-navigation-list__item mdc-list-item"
+                        routerLink="/users/create" routerLinkActive="mdc-list-item--activated" id="btn-user-cadastrar">
+                        <span class="portal-navigation-list__text">
+                            <i aria-hidden="true"
+                                class="fa fa-plus mdc-list-item__graphic portal-navigation-list__icon"></i> Cadastrar
+                        </span>
+                    </a>
+                </nav>
+            </nav>
+
+            <nav class="mdc-list mdc-list--avatar-list portal-navigation-list">
+                <a #insertions (click)="toggle(insertions)"
+                    [ngClass]="{'portal-navigation-list__item--open': child_active(insertions)}"
+                    class="mdc-list-item portal-navigation-list__item cursor--pointer" id="btn-chaves-insercao">
+                    <span class="portal-navigation-list__text">
+                        <i class="fa fa-list fa-lg mdc-list-item__graphic portal-navigation-list__icon"></i> Chaves de
+                        Inserção
+                    </span>
+                    <i class="material-icons portal-navigation-list__icon-collapse">keyboard_arrow_down</i>
+                </a>
+
+                <nav class="mdc-list portal-navigation-list">
+                    <a [routerLinkActiveOptions]="{exact: true}" class="portal-navigation-list__item mdc-list-item"
+                        routerLink="/insertions" routerLinkActive="mdc-list-item--activated"
+                        id="btn-chaves-insercao-gerenciar">
+                        <span class="portal-navigation-list__text">
+                            <i aria-hidden="true"
+                                class="fa fa-cog mdc-list-item__graphic portal-navigation-list__icon"></i> Gerenciar
+                        </span>
+                    </a>
+
+                    <a [routerLinkActiveOptions]="{exact: true}" class="portal-navigation-list__item mdc-list-item"
+                        routerLink="/insertions/create" routerLinkActive="mdc-list-item--activated"
+                        id="btn-chaves-insercao-cadastrar">
+                        <span class="portal-navigation-list__text">
+                            <i aria-hidden="true"
+                                class="fa fa-plus mdc-list-item__graphic portal-navigation-list__icon"></i> Cadastrar
+                        </span>
+                    </a>
+                </nav>
+            </nav>
+
+            <!--
+            <nav class="mdc-list mdc-list--avatar-list portal-navigation-list">
+                <a #financialControl (click)="toggle(financialControl)"
+                    [ngClass]="{'portal-navigation-list__item--open': child_active(financialControl)}"
+                    class="mdc-list-item portal-navigation-list__item cursor--pointer" id="btn-financialControl">
+                    <span class="portal-navigation-list__text">
+                        <i class="fa fa-dollar fa-lg mdc-list-item__graphic portal-navigation-list__icon"></i> Controle
+                        Financeiro
+                    </span>
+                    <i class="material-icons portal-navigation-list__icon-collapse">keyboard_arrow_down</i>
+                </a>
+
+                <nav class="mdc-list portal-navigation-list">
+                    <a [routerLinkActiveOptions]="{exact: true}" class="portal-navigation-list__item mdc-list-item"
+                        routerLink="/financial-control/activity-history" routerLinkActive="mdc-list-item--activated"
+                        id="btn-financialControl-historico-atividades">
+                        <span class="portal-navigation-list__text">
+                            <i aria-hidden="true"
+                                class="fa fa-list mdc-list-item__graphic portal-navigation-list__icon"></i> Histórico de
+                            atividades
+                        </span>
+                    </a>
+
+
+                    <a [routerLinkActiveOptions]="{exact: true}" class="portal-navigation-list__item mdc-list-item"
+                        routerLink="/financial-control/financial-summary" routerLinkActive="mdc-list-item--activated"
+                        id="btn-financialControl-resumo-contabil">
+                        <span class="portal-navigation-list__text">
+                            <i aria-hidden="true"
+                                class="fa fa-list mdc-list-item__graphic portal-navigation-list__icon"></i> Resumo
+                            contábil
+                        </span>
+                    </a>
+                    <!--
+                    <a [routerLinkActiveOptions]="{exact: true}" class="portal-navigation-list__item mdc-list-item"
+                        routerLink="/financial-control/consolidation" routerLinkActive="mdc-list-item--activated"
+                        id="btn-log-visto">
+                        <span class="portal-navigation-list__text">
+                            <i aria-hidden="true"
+                                class="fa fa-list mdc-list-item__graphic portal-navigation-list__icon"></i> Consolidação
+                        </span>
+                    </a>
+
+                </nav>
+            </nav> -->
+
+<!--
+            <nav class="mdc-list mdc-list--avatar-list portal-navigation-list">
+                <a #mediaplan (click)="toggle(mediaplan)"
+                    class="mdc-list-item portal-navigation-list__item cursor--pointer" id="btn-mediaplan"
+                    [routerLinkActiveOptions]="{exact: true}" routerLink="/media-plan/list"
+                    routerLinkActive="mdc-list-item--activated">
+                    <span class="portal-navigation-list__text">
+                        <i class="fa fa-area-chart fa-lg mdc-list-item__graphic portal-navigation-list__icon"></i> Plano
+                        de Mídia
+                    </span>
+                </a>
+            </nav>
+-->
+            <!--
+                <nav class="mdc-list portal-navigation-list">
+                    <a  class="portal-navigation-list__item mdc-list-item"
+                    
+                    id="btn-mediaplan-cadastrar">
+                    <span class="portal-navigation-list__text">
+                        <i aria-hidden="true"
+                        class="fa fa-cog mdc-list-item__graphic portal-navigation-list__icon"></i> Gerenciar
+                    </span>
+                </a>
+            </nav>
+            
+        -->
+
+<!--
+            <nav class="mdc-list mdc-list--avatar-list portal-navigation-list">
+                <a class="mdc-list-item portal-navigation-list__item" routerLink="/resumo-midia"
+                    routerLinkActive="mdc-list-item--activated" id="btn-home">
+                    <span class="portal-navigation-list__text">
+                        <i class="fa fa-table fa-lg mdc-list-item__graphic portal-navigation-list__icon"></i> Resumo de
+                        Mídia
+                    </span>
+                </a>
+            </nav>
+
+            <nav class="mdc-list mdc-list--avatar-list portal-navigation-list">
+                <a #log (click)="toggle(log)" class="mdc-list-item portal-navigation-list__item cursor--pointer"
+                    id="btn-log" [routerLinkActiveOptions]="{exact: true}" routerLink="/activity-history"
+                    routerLinkActive="mdc-list-item--activated">
+                    <span class="portal-navigation-list__text">
+                        <i class="fa fa-th-list fa-lg mdc-list-item__graphic portal-navigation-list__icon"></i>
+                        Histórico de Atividades
+                    </span>
+                </a>
+            </nav>
+-->
+            <nav class="mdc-list mdc-list--avatar-list portal-navigation-list">
+                <a #trash (click)="toggle(trash)"
+                    [ngClass]="{'portal-navigation-list__item--open': child_active(trash)}"
+                    class="mdc-list-item portal-navigation-list__item cursor--pointer" id="btn-lixeira">
+                    <span class="portal-navigation-list__text">
+                        <i class="fa fa-trash fa-lg mdc-list-item__graphic portal-navigation-list__icon"></i> Lixeira
+                    </span>
+                    <i class="material-icons portal-navigation-list__icon-collapse">keyboard_arrow_down</i>
+                </a>
+
+                <nav class="mdc-list portal-navigation-list">
+                    <a [routerLinkActiveOptions]="{exact: true}" class="portal-navigation-list__item mdc-list-item"
+                        routerLink="/trash/users" routerLinkActive="mdc-list-item--activated" id="btn-lixeira-usuarios">
+                        <span class="portal-navigation-list__text">
+                            <i aria-hidden="true"
+                                class="fa fa-user mdc-list-item__graphic portal-navigation-list__icon"></i> Usuários
+                        </span>
+                    </a>
+
+                    <a [routerLinkActiveOptions]="{exact: true}" class="portal-navigation-list__item mdc-list-item"
+                        routerLink="/trash/insertions" routerLinkActive="mdc-list-item--activated"
+                        id="btn-lixeira-chaves-insercao">
+                        <span class="portal-navigation-list__text">
+                            <i aria-hidden="true"
+                                class="fa fa-list mdc-list-item__graphic portal-navigation-list__icon"></i> Chaves de
+                            Inserção
+                        </span>
+                    </a>
+                </nav>
+            </nav>
+
+            <!--<nav class="mdc-list mdc-list--avatar-list portal-navigation-list">
+                <a #access_level
+                    (click)="toggle(access_level)" [ngClass]="{'portal-navigation-list__item--open': child_active(access_level)}"
+                    class="mdc-list-item portal-navigation-list__item cursor--pointer">
+                    <span class="portal-navigation-list__text">
+                        <i class="fa fa-user fa-lg mdc-list-item__graphic portal-navigation-list__icon"></i> Admin
+                    </span>
+                    <i class="material-icons portal-navigation-list__icon-collapse">keyboard_arrow_down</i>
+                </a>
+
+                <nav class="mdc-list portal-navigation-list">
+                    <a [routerLinkActiveOptions]="{exact: true}" class="portal-navigation-list__item mdc-list-item"
+                        routerLink="/admin/access-level" routerLinkActive="mdc-list-item--activated">
+                        <span class="portal-navigation-list__text">
+                            <i aria-hidden="true"
+                                class="fa fa-user mdc-list-item__graphic portal-navigation-list__icon"></i> Níveis de Acesso
+                        </span>
+                    </a>
+                </nav>
+            </nav>-->
+        </div>
+
+        <footer
+            class="mdc-toolbar mdc-theme--text-primary-on-primary-dark mdc-theme--primary-dark-0-bg mdc-toolbar--portal-no-shrink">
+            <div class="mdc-toolbar__row">
+                <section class="mdc-toolbar__section mdc-toolbar__section--align-end">
+                    <a (click)="layoutService.toggleMenu()"
+                        class="material-icons mdc-toolbar__menu-icon cursor--pointer">
+                        <span class="portal-navigation-list__text">
+                            <i aria-hidden="true" class="fa fa-chevron-left"></i>
+                        </span>
+                    </a>
+                </section>
+            </div>
+        </footer>
+    </nav>
+</aside>

@@ -1,0 +1,530 @@
+<div
+    class="portal-main__content mdc-layout-grid--fullheight mdc-theme--background mdc-theme--text-primary-on-background">
+    <div class="mdc-layout-grid portal-dashboard" style="padding:10px;">
+        <div class="mdc-layout-grid__inner">
+            <div
+                class="portal-widget mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                <h3 class="portal-widget__heading mdc-typography--subheading2">
+                    Listagem de <strong>Chaves de Inserção</strong>
+
+                    <span class="float--right">
+                        <button (click)="clearFilters()"
+                            class="mdc-button mdc-button--outlined mg-4--horizontal mg-n-8--top fix-btn-insertions-table"
+                            style="height:23px;" id="btn-resetar-colunas">Resetar colunas</button>
+                        <button (click)="clearSearch()"
+                            class="mdc-button mdc-button--outlined mg-4--horizontal mg-n-8--top fix-btn-insertions-table"
+                            style="height:23px;" id="btn-limpar-filtros">Limpar filtros</button>
+                        <a class="mdc-button mdc-button--outlined mg-4--horizontal mg-n-8--top btn-sm fix-btn-insertions-table"
+                            href="/insertions/create" style="height:23px;" id="btn-cadastrar">
+                            <i class="fa fa-plus"> </i>&nbsp;Cadastrar
+                        </a>
+                    </span>
+                </h3>
+                <app-excel-list-download *ngIf="dataToDownload.length > 0" [optionsSelected]="dataToDownload">
+                </app-excel-list-download>
+                <div>
+                    <form>
+                        <div class="mdc-layout-grid" style="padding: 0 0 10px 0">
+                            <div class="mdc-layout-grid__inner">
+                                <div
+                                    class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                                    <div class="mdc-select__dropdown mdc-select__dropdown--multiple">
+                                        <ng-select #field (deselected)="onDeselectedField($event)"
+                                            (selected)="onSelectField($event)" [allowClear]="true" [multiple]="true"
+                                            [options]="fields.options"></ng-select>
+                                        <label [class.mdc-floating-label--float-above]="fields.selected.length"
+                                            class="mdc-floating-label">
+                                            Campos da Grid <i class="fa fa-question-circle fa-lg cursor--pointer"
+                                                data-toggle="tooltip" title=""></i>
+                                        </label>
+                                        <div class="mdc-line-ripple"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div class="mdc-card portal-widget__card mdc-card--portal-fullheight mdc-card--portal-space-between"
+                    id="cabecinha">
+                    <div class="mdl-data-table--responsible">
+                        <table class="mdl-data-table portal-table-tab-panel portal-table-tab-panel--active "
+                            min-width="50" id="table-insertions">
+                            <thead id="filtros">
+                                <tr>
+
+                                    <th style="min-width: 80px"
+                                        width="80">
+                                        <div class="mdc-text-action mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <label class="mdc-floating-label portal-color-default label-actions"
+                                                   for="search_created_at"><strong>Ações</strong></label>
+                                        </div>
+                                    </th>
+
+                                    <th *ngIf="fields.selected.includes('excel_download')" style="min-width: 60px;"
+                                        width="60">
+                                        <div class="mdc-select">
+                                            <select #select (change)="searchingExcel(dataToDownload, select.value)"
+                                                class="mdc-select__native-control" id="search_excel_download"
+                                                name="excel_download" style="padding-bottom: 8px">
+                                                <option value=""></option>
+                                                <option *ngFor="let select of excel" [value]="select.value">
+                                                    {{ select.value }}</option>
+                                            </select>
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_excel_download"> Ext. Unif. </label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+                                    </th>
+                                    <th *ngIf="fields.selected.includes('id')" style="min-width: 80px" width="80">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.id" autocomplete="off"
+                                                class="mdc-text-field__input" id="search_id" name="search_id"
+                                                type="text" />
+                                            <label class="mdc-floating-label portal-color-default" for="search_id">ID
+                                                Inserção </label>
+                                            <div class="mdc-line-ripple"></div>
+                                            <app-sort-column (onChange)="sorting($event)" [_clear]="sort.column"
+                                                class="cursor--pointer" column="id"></app-sort-column>
+                                        </div>
+                                    </th>
+                                    <th *ngIf="fields.selected.includes('insertion_id')" style="min-width: 80px"
+                                        width="80">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.insertion_id"
+                                                autocomplete="off" class="mdc-text-field__input"
+                                                id="search_insertion_id" name="search_insertion_id" type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_insertion_id">ID do pai</label>
+                                            <div class="mdc-line-ripple"></div>
+                                            <app-sort-column (onChange)="sorting($event)" [_clear]="sort.column"
+                                                class="cursor--pointer" column="id"></app-sort-column>
+                                        </div>
+                                    </th>
+                                    <th *ngIf="fields.selected.includes('reference_date')" style="min-width: 150px"
+                                        width="80">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.reference_date"
+                                                [dropSpecialCharacters]="false" autocomplete="off"
+                                                class="mdc-text-field__input" id="search_reference_date" mask="99/9999"
+                                                name="search_reference_date" type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_reference_date">Referência
+                                                (mm/aaaa) </label>
+                                            <div class="mdc-line-ripple"></div>
+                                            <app-sort-column (onChange)="sorting($event)" [_clear]="sort.column"
+                                                class="cursor--pointer" column="reference_date"></app-sort-column>
+                                        </div>
+                                    </th>
+                                    <th *ngIf="fields.selected.includes('campaign_name')" style="min-width: 360px">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.campaign_name"
+                                                autocomplete="off" class="mdc-text-field__input"
+                                                id="search_campaign_name" name="search_campaign_name" type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_campaign_name">Nome da campanha (utilize o checkbox para
+                                                extração unificada) </label>
+                                            <div class="mdc-line-ripple"></div>
+                                            <app-sort-column (onChange)="sorting($event)" [_clear]="sort.column"
+                                                class="cursor--pointer" column="campaign_name"></app-sort-column>
+                                        </div>
+                                    </th>
+                                    <th *ngIf="fields.selected.includes('pi_number')" width="100">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.pi_number"
+                                                autocomplete="off" class="mdc-text-field__input" id="search_pi_number"
+                                                name="search_pi_number" type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_pi_number">Número
+                                                PI (A.D) </label>
+                                            <div class="mdc-line-ripple"></div>
+                                            <app-sort-column (onChange)="sorting($event)" [_clear]="sort.column"
+                                                class="cursor--pointer" column="pi_number"></app-sort-column>
+                                        </div>
+                                    </th>
+                                    <th *ngIf="fields.selected.includes('area')" width="100">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.area" autocomplete="off"
+                                                class="mdc-text-field__input" id="search_area" name="search_area"
+                                                type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_area">Área </label>
+                                            <div class="mdc-line-ripple"></div>
+                                            <app-sort-column (onChange)="sorting($event)" [_clear]="sort.column"
+                                                class="cursor--pointer" column="area"></app-sort-column>
+                                        </div>
+                                    </th>
+                                    <th *ngIf="fields.selected.includes('media')" width="100">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.media" autocomplete="off"
+                                                class="mdc-text-field__input" id="search_media" name="search_media"
+                                                type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_media">Mídia </label>
+                                            <div class="mdc-line-ripple"></div>
+                                            <app-sort-column (onChange)="sorting($event)" [_clear]="sort.column"
+                                                class="cursor--pointer" column="media"></app-sort-column>
+                                        </div>
+                                    </th>
+
+                                    <th *ngIf="fields.selected.includes('comments')" style="min-width: 300px">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.comments"
+                                                autocomplete="off" class="mdc-text-field__input" id="search_comments"
+                                                name="search_comments" type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_comments">Observação </label>
+                                            <div class="mdc-line-ripple"></div>
+                                            <app-sort-column (onChange)="sorting($event)" [_clear]="sort.column"
+                                                class="cursor--pointer" column="comments"></app-sort-column>
+                                        </div>
+                                    </th>
+
+
+                                    <th *ngIf="fields.selected.includes('impact')" width="100">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.impact" autocomplete="off"
+                                                class="mdc-text-field__input" id="search_impact" name="search_impact"
+                                                type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_impact">Impacto </label>
+                                            <div class="mdc-line-ripple"></div>
+                                            <app-sort-column (onChange)="sorting($event)" [_clear]="sort.column"
+                                                class="cursor--pointer" column="impact"></app-sort-column>
+                                        </div>
+                                    </th>
+                                    <th *ngIf="fields.selected.includes('impact_type_id')" width="200"
+                                        style="min-width: 180px">
+                                        <div class="mdc-select">
+                                            <select (change)="searching()" [(ngModel)]="search.impact_type_id"
+                                                class="mdc-select__native-control" id="search_impact_type_id"
+                                                name="impact_type_id">
+                                                <option value=""></option>
+                                                <option *ngFor="let impactType of impact_types" [value]="impactType.id">
+                                                    {{ impactType.name }}
+                                                </option>
+                                            </select>
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_impact_type_id">Tipo de Impacto Planejado </label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+                                    </th>
+                                    <th *ngIf="fields.selected.includes('initiative_id')" width="200">
+                                        <div class="mdc-select">
+                                            <select (change)="searching()" [(ngModel)]="search.initiative_id"
+                                                class="mdc-select__native-control" id="search_initiative_id"
+                                                name="initiative_id">
+                                                <option value=""></option>
+                                                <option *ngFor="let flag of flags" [value]="flag.id">
+                                                    {{ flag.slug }}
+                                                </option>
+                                            </select>
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_initiative_id">Iniciativa </label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+                                    </th>
+                                    <th *ngIf="fields.selected.includes('investment')" width="100">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.investment"
+                                                autocomplete="off" class="mdc-text-field__input" id="search_investment"
+                                                name="search_investment" type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_investment">Investimento </label>
+                                            <div class="mdc-line-ripple"></div>
+                                            <app-sort-column (onChange)="sorting($event)" [_clear]="sort.column"
+                                                class="cursor--pointer" column="investment"></app-sort-column>
+                                        </div>
+                                    </th>
+                                    <th *ngIf="fields.selected.includes('pi_not_rated')" width="100">
+                                        <div class="mdc-select">
+                                            <select (change)="searching()" [(ngModel)]="search.pi_not_rated"
+                                                class="mdc-select__native-control" id="search_pi_not_rated"
+                                                name="pi_not_rated">
+                                                <option value=""></option>
+                                                <option value="true">Sim</option>
+                                                <option value="false">Não</option>
+                                            </select>
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_pi_not_rated">PI não valorado </label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+                                    </th>
+                                    <th *ngIf="fields.selected.includes('pi_type_id')" width="100">
+                                        <div class="mdc-select">
+                                            <select (change)="searching()" [(ngModel)]="search.pi_type_id"
+                                                class="mdc-select__native-control" id="search_pi_type_id"
+                                                name="pi_type_id">
+                                                <option value=""></option>
+                                                <option *ngFor="let pi_type of pi_types" [value]="pi_type.id">
+                                                    {{ pi_type.name }}
+                                                </option>
+                                            </select>
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_pi_type_id">Tipo
+                                                de PI </label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+                                    </th>
+                                    <th *ngIf="fields.selected.includes('unit_cost')" width="100">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.unit_cost"
+                                                autocomplete="off" class="mdc-text-field__input" id="search_unit_cost"
+                                                name="search_unit_cost" type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_unit_cost">Custo
+                                                unitário </label>
+                                            <div class="mdc-line-ripple"></div>
+                                            <app-sort-column (onChange)="sorting($event)" [_clear]="sort.column"
+                                                class="cursor--pointer" column="unit_cost"></app-sort-column>
+                                        </div>
+                                    </th>
+
+                                    <th *ngIf="fields.selected.includes('company_id')" width="100">
+                                        <div class="mdc-select">
+                                            <select (change)="searching()" [(ngModel)]="search.company_id"
+                                                class="mdc-select__native-control" id="search_company_id"
+                                                name="company_id" style="padding-bottom: 8px">
+                                                <option value=""></option>
+                                                <option *ngFor="let company of companies" [value]="company.id">
+                                                    {{ company.name }}</option>
+                                            </select>
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_company_id">Empresa </label>
+                                            <div class="mdc-line-ripple"></div>
+                                        </div>
+                                    </th>
+                                    <th *ngIf="fields.selected.includes('user')" width="100">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.user" autocomplete="off"
+                                                class="mdc-text-field__input" id="search_user" name="search_user"
+                                                type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_user">Usuário</label>
+                                            <div class="mdc-line-ripple"></div>
+                                            <app-sort-column (onChange)="sorting($event)" [_clear]="sort.column"
+                                                class="cursor--pointer" column="user"></app-sort-column>
+                                        </div>
+                                    </th>
+
+
+                                    <th *ngIf="fields.selected.includes('media_owner')" width="100">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.media_owner"
+                                                autocomplete="off" class="mdc-text-field__input" id="search_media_owner"
+                                                name="search_media_owner" type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_media_owner">Veículo </label>
+                                            <div class="mdc-line-ripple"></div>
+                                            <app-sort-column (onChange)="sorting($event)" [_clear]="sort.column"
+                                                class="cursor--pointer" column="media_owner"></app-sort-column>
+                                        </div>
+                                    </th>
+
+                                    <th *ngIf="fields.selected.includes('media_objective')" width="100">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.media_objective"
+                                                autocomplete="off" class="mdc-text-field__input"
+                                                id="search_media_objective" name="search_media_objective" type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_media_objective">Objetivo </label>
+                                            <div class="mdc-line-ripple"></div>
+                                            <app-sort-column (onChange)="sorting($event)" [_clear]="sort.column"
+                                                class="cursor--pointer" column="media_objective"></app-sort-column>
+                                        </div>
+                                    </th>
+
+                                    <th *ngIf="fields.selected.includes('media_adserver_platform')" width="100">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.media_adserver_platform"
+                                                autocomplete="off" class="mdc-text-field__input"
+                                                id="search_media_adserver_platform"
+                                                name="search_media_adserver_platform" type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_media_adserver_platform">AD
+                                                Server/Plataforma </label>
+                                            <div class="mdc-line-ripple"></div>
+                                            <app-sort-column (onChange)="sorting($event)" [_clear]="sort.column"
+                                                class="cursor--pointer" column="media_adserver_platform">
+                                            </app-sort-column>
+                                        </div>
+                                    </th>
+                                    <th *ngIf="fields.selected.includes('created_at')" style="min-width: 80px"
+                                        width="80">
+                                        <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                            <input (keyup)="searching()" [(ngModel)]="search.created_at"
+                                                autocomplete="off" class="mdc-text-field__input" id="search_created_at"
+                                                name="search_created_at" type="text" />
+                                            <label class="mdc-floating-label portal-color-default"
+                                                for="search_created_at">Data Criação</label>
+                                            <div class="mdc-line-ripple"></div>
+                                            <app-sort-column (onChange)="sorting($event)" [_clear]="sort.column"
+                                                class="cursor--pointer" column="id"></app-sort-column>
+                                        </div>
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody *ngIf="insertions.data.length; else empty">
+                                <tr *ngFor="let insertion of insertions.data">
+                                    <td class="text--center">
+                                        <button (click)="confirm(insertion)" class="mdc-button  mdc-button---xsmall "
+                                            title="Excluir">
+                                            <i class="fa fa-trash-o fa-lg color-red"></i>
+                                        </button>
+
+                                        <button (click)="confirmDuplicate(insertion)"
+                                            [disabled]="!insertion.confirmation"
+                                            class="mdc-button   mdc-button---xsmall " title="Duplicar">
+                                            <i [ngClass]="{'color-orange':insertion.confirmation  }"
+                                                class="fa fa-copy fa-lg "></i>
+                                        </button>
+                                        <button (click)="downloadExcel(insertion)"
+                                            [disabled]="!insertion.confirmation || ! medmiaModuleService.isEqual(insertion.media, 'DIGITAL')"
+                                            class="mdc-button  mdc-button---xsmall " title="Baixar Arquivo">
+                                            <i [ngClass]="{'color-color-green':insertion.confirmation  }"
+                                                class="fa fa-file-excel-o fa-lg"></i>
+                                        </button>
+                                        <button (click)="update(insertion)" class="mdc-button   mdc-button---xsmall"
+                                            title="Editar">
+                                            <i class="fa fa-edit fa-lg"></i>
+                                        </button>
+                                        <button [queryParams]="{id: insertion.id}"
+                                            class="mdc-button  mdc-button---xsmall" routerLink="/insertions/show"
+                                            title="Visualizar"><i class="fa fa-eye fa-lg color-green"></i>
+                                        </button>
+
+
+
+                                        <button (click)="startModalStatusCreativeLine(insertion)"
+                                            [disabled]="!medmiaModuleService.isEqual(insertion.media, 'DIGITAL')"
+                                            class="mdc-button  mdc-button---xsmall" title="Status Agência">
+                                            <i class="fa  fa-folder fa-lg " [ngClass]="checkAgencyPending(insertion)">
+                                            </i>
+
+
+                                        </button>
+
+
+                                        <button (click)="startModalStatusCreativeLine(insertion)"
+                                            [disabled]="!medmiaModuleService.isEqual(insertion.media, 'DIGITAL')"
+                                            class="mdc-button  mdc-button---xsmall" title="Status Predicta">
+
+                                            <i class="fa  fa-send fa-lg " [ngClass]="checkPredictaPending(insertion)">
+
+                                            </i>
+
+
+                                        </button>
+
+
+
+                                    </td>
+
+                                    <td *ngIf="fields.selected.includes('excel_download')">
+                                        <div class="mdc-checkbox" style="width: 10px; height: 10px">
+                                            <input
+                                                (change)="changeCheck($event, insertion.id, insertion.campaign_name, insertion.media_owner )"
+                                                [checked]="check(insertion.id)"
+                                                [disabled]="!insertion.confirmation || !medmiaModuleService.isEqual(insertion.media, 'DIGITAL')"
+                                                class="mdc-checkbox__native-control" type="checkbox" value="1" />
+                                            <div class="mdc-checkbox__background" style="left: 9px; top: 10px;">
+                                                <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                                    <path class="mdc-checkbox__checkmark-path"
+                                                        d="M1.73,12.91 8.1,19.28 22.79,4.59" fill="none" stroke="white">
+                                                    </path>
+                                                </svg>
+                                                <div class="mdc-checkbox__mixedmark"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+
+
+                                    <td *ngIf="fields.selected.includes('id')">
+                                        {{ insertion.id }}
+                                        <span *ngIf="insertion.confirmation"><i class="fa fa-check-square-o"></i></span>
+                                        <span *ngIf="!insertion.confirmation"><i class="fa fa-square-o"></i></span>
+                                    </td>
+                                    <td *ngIf="fields.selected.includes('insertion_id')">{{ insertion.insertion_id }}
+                                    </td>
+                                    <td *ngIf="fields.selected.includes('reference_date')">
+                                        {{ insertion.reference_date | date : 'MM/yyyy' }}</td>
+                                    <td *ngIf="fields.selected.includes('campaign_name')">
+                                        <div class="mdc-checkbox" style="width: 10px; height: 10px">
+                                            <input
+                                                (change)="changeCheck($event, insertion.id, insertion.campaign_name, insertion.media_owner )"
+                                                [checked]="check(insertion.id)"
+                                                [disabled]="!insertion.confirmation || !medmiaModuleService.isEqual(insertion.media, 'DIGITAL')"
+                                                class="mdc-checkbox__native-control" type="checkbox" value="1" />
+                                            <div class="mdc-checkbox__background" style="left: 9px; top: 10px;">
+                                                <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                                    <path class="mdc-checkbox__checkmark-path"
+                                                        d="M1.73,12.91 8.1,19.28 22.79,4.59" fill="none" stroke="white">
+                                                    </path>
+                                                </svg>
+                                                <div class="mdc-checkbox__mixedmark"></div>
+                                            </div>
+                                        </div>
+                                        <div style="    display: inline-block;margin-bottom: 8px;">
+                                            {{ insertion.campaign_name }}</div>
+                                    </td>
+                                    <td *ngIf="fields.selected.includes('pi_number')">{{ insertion.pi_number }}</td>
+                                    <td *ngIf="fields.selected.includes('area')">{{ insertion.area }}</td>
+                                    <td *ngIf="fields.selected.includes('media')">{{ insertion.media }}</td>
+
+                                    <td *ngIf="fields.selected.includes('comments')">
+                                        {{ insertion.comments ? (insertion.comments | substr: 0:65) : '---' }}</td>
+
+                                    <td *ngIf="fields.selected.includes('impact')">{{ insertion.impact }}</td>
+                                    <td *ngIf="fields.selected.includes('impact_type_id')">
+                                        {{ insertion.impact_type_id ? insertion.impact_type.name : '---' }}</td>
+                                    <td *ngIf="fields.selected.includes('initiative_id')">
+                                        {{ insertion.initiative ? insertion.initiative.name : '---' }}</td>
+                                    <td *ngIf="fields.selected.includes('investment')">
+                                        {{ insertion.investment ? ('R$ ' + (insertion.investment | price)) : '---'}}
+                                    </td>
+                                    <td *ngIf="fields.selected.includes('pi_not_rated')">
+                                        {{ insertion.pi_not_rated ? 'Sim' : 'Não' }}</td>
+                                    <td *ngIf="fields.selected.includes('pi_type_id')">{{ insertion.pi_type.name }}</td>
+                                    <td *ngIf="fields.selected.includes('unit_cost')">
+                                        {{ insertion.unit_cost ? ('R$ ' + (insertion.unit_cost | price)) : '---'}}</td>
+
+                                    <td *ngIf="fields.selected.includes('company_id')">{{ insertion.user.company.name }}
+                                    </td>
+                                    <td *ngIf="fields.selected.includes('user')">{{ insertion.user.name }}</td>
+
+                                    <td *ngIf="fields.selected.includes('media_owner')">{{ insertion.media_owner }}</td>
+                                    <td *ngIf="fields.selected.includes('media_objective')">
+                                        {{ insertion.media_objective }}</td>
+                                    <td *ngIf="fields.selected.includes('media_adserver_platform')">
+                                        {{ insertion.media_adserver_platform }}</td>
+
+                                    <td *ngIf="fields.selected.includes('created_at')">
+                                        {{ insertion.created_at | date : 'dd/MM/yyyy' }}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <app-pagination (navigate)="getInsertions($event)" [_data]="insertions" class="align--center">
+                    </app-pagination>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<ng-template #empty>
+    <tr>
+        <td class="text--center" colspan="7">Nenhum resultado encontrado!</td>
+    </tr>
+</ng-template>
+
+<app-modal-status-creative-line-component *ngIf="modalStatusCreativeLine.insertion"
+    (doClose)="endModalStatusCreativeLine()" [insertion]="modalStatusCreativeLine.insertion"
+    [show]="modalStatusCreativeLine.show"></app-modal-status-creative-line-component>

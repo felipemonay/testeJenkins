@@ -1,0 +1,29 @@
+.portal-badge {
+    min-width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 4px;
+    padding: 0px 5px;
+    font-size: 10px;
+    font-weight: 500;
+    display: block;
+}
+
+.portal-badge--primary {
+    /* @alternate */
+    color: white;
+    color: var(--mdc-theme-text-primary-on-primary-dark, white);
+    /* @alternate */
+    background: #03A9F4;
+    background: var(--mdc-theme-primary, #03A9F4);
+}
+
+.portal-badge--secondary {
+    /* @alternate */
+    color: rgba(255, 255, 255, 0.7);
+    color: var(--mdc-theme-text-secondary-on-secondary, rgba(255, 255, 255, 0.7));
+    /* @alternate */
+    background: var(--mdc-theme-secondary-light, red);
+    background: var(--mdc-theme-secondary, var(--mdc-theme-secondary-light, red));
+}

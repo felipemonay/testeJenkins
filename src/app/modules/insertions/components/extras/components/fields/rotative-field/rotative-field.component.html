@@ -1,0 +1,20 @@
+<div class="mdc-checkbox mg-8--top" style="top: 12px; left: -12px">
+
+  <input [(ngModel)]="_extra.rotative" [id]="name" [name]="name" autocomplete="off"
+         class="mdc-checkbox__native-control"
+         [required]="field_required"
+         [disabled]="status.isConfirmed"
+         type="checkbox" value="true">
+
+  <div class="mdc-checkbox__background">
+      <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+          <path class="mdc-checkbox__checkmark-path" d="M1.73,12.91 8.1,19.28 22.79,4.59" fill="none"
+                stroke="white"></path>
+      </svg>
+      <div class="mdc-checkbox__mixedmark"></div>
+  </div>
+</div>
+<label for="label" class="cursor--pointer mdc-label mg-n-14--left" 
+style="font-family:'Ubuntu', 'Roboto', sans-serif; font-weight: 400; font-size: 14px; text-transform: uppercase">
+  {{ label }}
+</label>

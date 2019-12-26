@@ -1,0 +1,41 @@
+// Padding
+
+.pd {
+    padding: 10px;
+
+    @for $i from 2 through 50 {
+
+        @if $i % 2 == 0 {
+
+            &-#{$i} {
+                padding: #{$i}px;
+            }
+
+            &-#{$i}--vertical {
+                padding-top: #{$i}px;
+                padding-bottom: #{$i}px;
+            }
+
+            &-#{$i}--horizontal {
+                padding-right: #{$i}px;
+                padding-left: #{$i}px;
+            }
+
+            &-#{$i}--top {
+                padding-top: #{$i}px;
+            }
+
+            &-#{$i}--right {
+                padding-right: #{$i}px;
+            }
+
+            &-#{$i}--bottom {
+                padding-bottom: #{$i}px;
+            }
+
+            &-#{$i}--left {
+                padding-left: #{$i}px;
+            }
+        }
+    }
+}

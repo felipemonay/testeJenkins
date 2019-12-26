@@ -1,0 +1,66 @@
+<nav *ngIf="hasInsertion">
+    <div class="profile">
+
+        <div (click)="toggleAlert()" class="mdc-chip  mdc-chip--alert-color">
+            <i class="material-icons mdc-chip__icon mdc-chip__icon--leading ">notification_important</i>
+            <div class="mdc-chip__text">{{ insertionsData.length || 0 }} Ações Pendentes</div>
+        </div>
+        <div aria-label="Notifications" class="mdc-menu-anchor">
+
+            <div *ngIf="show_alert_modal" @show_alert class="mdc-menu mdc-alert"
+                 style="overflow-y: hidden;background-color: #eee;max-height: 21rem;">
+                <header class=" mdc-top-app-bar mdc-top-app-bar--dense" style="background-color: #eee">
+                    <div class="mdc-top-app-bar__row">
+                        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                            <span class="mdc-top-app-bar__title" style="color: #333">Alertas</span>
+                        </section>
+                        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+                            <button (click)="toggleAlert()" aria-label="Fechar"
+                                    class="mdc-button mdc-button--outlined ">Fechar
+                            </button>
+                        </section>
+                    </div>
+                </header>
+                <div #alert_list
+                     (wheel)="onScroll($event)"
+                     class="mdc-card"
+                     style="overflow-y: scroll;height: auto;max-height: 15rem;min-height: 2rem;margin-top: 3rem;">
+                    <div class="mdc-layout-grid" style="padding:4px">
+                        <div class="mdc-layout-grid__inner">
+                            <div
+                                class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                                <ul class="mdc-list demo-list mdc-list--two-line mdc-list--avatar-list mdc-card">
+
+                                    <li (click)="goToInsertion(insertion.insertion_id)"
+                                        *ngFor="let insertion of insertionsData"
+                                        class="mdc-list-item mdc-ripple-upgraded" tabindex="0">
+                                    <span aria-hidden="true" class="mdc-list-item__graphic material-icons"
+                                          style="color: var(--mdc-theme-primary, #6200ee);">http</span>
+                                        <span class="mdc-list-item__text" style="margin-top: -10px">
+                                        <span
+                                            class="mdc-list-item__primary-text">Linha Criativo (Título PI):  <strong>{{ insertion.group_name }}</strong>
+                                            <br>Campanha:  <strong>{{ insertion.campaign_name }}
+                                                ({{ insertion.insertion_id }})</strong>
+                                           </span>
+                                        <span class="mdc-list-item__secondary-text">{{ insertion.email }}</span>
+                                    </span>
+                                        <span aria-hidden="true" class="mdc-list-item__meta material-icons">arrow_forward</span>
+                                    </li>
+
+
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</nav>
+
+
+

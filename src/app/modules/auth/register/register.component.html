@@ -1,0 +1,179 @@
+<div
+    class="portal-main__content mdc-theme--text-primary-on-light light-grey-bg portal-no-layout-container full-height bg-img--bottom">
+    <div class="mdc-layout-grid mdc-layout-grid--fullheight">
+        <div class="mdc-layout-grid__inner">
+            <div
+                class="mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-4-phone"></div>
+            <div
+                class="mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-4-phone">
+                <div class="mdc-card portal-card portal-card--hero portal-card--horizontal  mdc-elevation--z24">
+                    <div class="mdc-layout-grid">
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell--span-6">
+                                <div
+                                    class="theme--grey-bg mdc-theme--text-primary-on-secondary portal-card__content portal-card__content--column">
+                                    <section class="text--center">
+                                        <div class="portal-card__title portal-card__title--vertical">
+                                            <img alt="logo" class="portal-card__logo"
+                                                 src="/assets/images/santander_logo_white.png" width="100">
+                                            <h1 class="portal-card--headline">Sistema de Tags do Santander</h1>
+                                        </div>
+                                        <p class="mdc-typography--body1">
+                                            Registre-se usando o formulário ou faça login com o botão abaixo.
+                                        </p>
+                                        <p class="mdc-typography--body1">
+                                            <b>Atenção: </b> seu cadastro passará por uma análise antes de ser aceito.
+                                        </p>
+                                    </section>
+                                    <div class="portal-card__content--column-actions">
+                                        <a class="mdc-button mdc-button--raised mdc-theme--secondary-bg mdc-theme--text-primary-on-secondary"
+                                           data-mdc-auto-init="MDCRipple"
+                                           routerLink="/auth/login">
+                                            Eu já tenho uma conta.
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mdc-layout-grid__cell--span-6">
+                                <div class="portal-card__content portal-card__content--column">
+                                    <form #formRegister="ngForm" (submit)="send()" autocomplete="off">
+                                        <div class="mdc-layout-grid">
+                                            <div class="mdc-layout-grid__inner">
+                                                <div class="mdc-layout-grid__cell--span-6">
+                                                    <div
+                                                        class="mdc-text-field mdc-text-field--dense mdc-text-field--fullwidth">
+                                                        <input [(ngModel)]="user.name" autocomplete="off"
+                                                               class="mdc-text-field__input" id="name"
+                                                               name="name"
+                                                               required type="text">
+                                                        <label class="mdc-floating-label" for="name">Nome </label>
+                                                        <div class="mdc-line-ripple"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mdc-layout-grid__cell--span-6">
+                                                    <div class="mdc-select">
+                                                        <select [(ngModel)]="user.company_id"
+                                                                class="mdc-select__native-control"
+                                                                id="company_id"
+                                                                name="company_id" required>
+                                                            <option disabled selected value=""></option>
+                                                            <option *ngFor="let company of companies"
+                                                                    [value]="company.id">{{ company.name }}</option>
+                                                        </select>
+                                                        <label class="mdc-floating-label"
+                                                               for="company_id">Empresa</label>
+                                                        <div class="mdc-line-ripple"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mdc-layout-grid">
+                                            <div class="mdc-layout-grid__inner">
+                                                <div class="mdc-layout-grid__cell--span-6">
+                                                    <div
+                                                        class="mdc-text-field mdc-text-field--dense mdc-text-field--fullwidth">
+                                                        <input [(ngModel)]="user.email" autocomplete="off"
+                                                               class="mdc-text-field__input"
+                                                               email id="email"
+                                                               name="email" required type="email">
+                                                        <label class="mdc-floating-label" for="email">Email </label>
+                                                        <div class="mdc-line-ripple"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="mdc-layout-grid__cell--span-6">
+                                                    <div
+                                                        class="mdc-text-field mdc-text-field--dense mdc-text-field--fullwidth">
+                                                        <input [(ngModel)]="user.cpf" autocomplete="off"
+                                                               class="mdc-text-field__input" id="cpf"
+                                                               mask="999.999.999-99" name="cpf"
+                                                               required type="text">
+                                                        <label class="mdc-floating-label" for="cpf">CPF </label>
+                                                        <div class="mdc-line-ripple"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mdc-layout-grid">
+                                            <div class="mdc-layout-grid__inner">
+                                                <div class="mdc-layout-grid__cell--span-6">
+                                                    <div
+                                                        class="mdc-text-field mdc-text-field--dense mdc-text-field--fullwidth">
+                                                        <input [(ngModel)]="user.password" autocomplete="off"
+                                                               class="mdc-text-field__input"
+                                                               id="password" name="password"
+                                                               required type="password">
+                                                        <label class="mdc-floating-label" for="password">Senha </label>
+                                                        <div class="mdc-line-ripple"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mdc-layout-grid__cell--span-6">
+                                                    <div
+                                                        class="mdc-text-field mdc-text-field--dense mdc-text-field--fullwidth">
+                                                        <input [(ngModel)]="user.password_confirmation"
+                                                               autocomplete="off"
+                                                               class="mdc-text-field__input"
+                                                               id="password_confirmation"
+                                                               name="password_confirmation" required
+                                                               type="password">
+                                                        <label class="mdc-floating-label" for="password_confirmation">Repita
+                                                            sua senha </label>
+                                                        <div class="mdc-line-ripple"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mdc-layout-grid">
+                                            <div class="mdc-layout-grid__inner">
+                                                <div class="mdc-layout-grid__cell--span-6">
+                                                    <div
+                                                        class="mdc-text-field mdc-text-field--dense mdc-text-field--fullwidth">
+                                                        <input [(ngModel)]="user.office" autocomplete="off"
+                                                               class="mdc-text-field__input"
+                                                               id="office" name="office"
+                                                               required type="text">
+                                                        <label class="mdc-floating-label" for="office">Cargo </label>
+                                                        <div class="mdc-line-ripple"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mdc-layout-grid__cell--span-6">
+                                                    <div
+                                                        class="mdc-text-field mdc-text-field--dense mdc-text-field--fullwidth">
+                                                        <input [(ngModel)]="user.phone" autocomplete="off"
+                                                               class="mdc-text-field__input"
+                                                               id="phone" mask="(99) 9 9999-9999"
+                                                               name="phone"
+                                                               required type="text">
+                                                        <label class="mdc-floating-label" for="phone">Telefone </label>
+                                                        <div class="mdc-line-ripple"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <p class="mdc-typography--body2 float--right">
+                                            <small>Os campos marcados com * são obrigatórios.</small>
+                                        </p>
+                                    </form>
+
+                                    <div [ngClass]="{disabled: !formRegister.valid}"
+                                         class="portal-card__content--column-actions">
+                                        <button (click)="send()" [disabled]="!formRegister.valid"
+                                                class="mdc-button mdc-button--raised mdc-button--portal-login">Registro
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

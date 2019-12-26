@@ -1,0 +1,76 @@
+<div class="mdc-layout-grid__inner mg-40--top">
+    <div
+        class="portal-widget mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+        <p class="portal-widget__heading mdc-typography--subheading2">Extras&nbsp;
+            <button (click)="emitAlert(true)"
+                    class="mdc-button  mdc-button--outlined mg-4--horizontal mg-n-8--top mdc-button--alert-color">
+                <i class="fa fa-warning"></i> &nbsp; Atenção
+            </button>
+        </p>
+
+        <div class="mdc-card portal-widget__card mdc-card--portal-fullheight mdc-card--portal-space-between">
+            <div>
+                <form (submit)="send()" autocomplete="off">
+                    <div class="mdc-layout-grid">
+                        <div class="mdc-layout-grid__inner">
+                            <div
+                                class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                                <div class="mdc-layout-grid__inner">
+                                    <div
+                                        class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                                        <app-initial-date-field [extra]="extra" [field_required]="true"
+                                                                [insertion]="_insertion"></app-initial-date-field>
+                                    </div>
+
+                                    <div
+                                        class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                                        <app-final-date-field [extra]="extra" [field_required]="true"
+                                                              [insertion]="_insertion"></app-final-date-field>
+                                    </div>
+                                    <div
+                                        class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                                        <app-media-owner-field [admin]="admin" [extra]="extra"
+                                                               [insertion]="_insertion"></app-media-owner-field>
+                                    </div>
+                                    <div
+                                        class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                                        <app-media-objective-field [extra]="extra"
+                                                                   [insertion]="_insertion"></app-media-objective-field>
+                                    </div>
+                                    <div
+                                        class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                                        <app-media-adserver-platform-field [admin]="admin" [extra]="extra"
+                                                                           [insertion]="_insertion"></app-media-adserver-platform-field>
+                                    </div>
+                                    <div
+                                        class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                                        <app-customer-field [extra]="extra"
+                                                            [insertion]="_insertion"></app-customer-field>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div
+                                class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                                <p class="mdc-typography--body2 float--right">
+                                    <small>Os campos marcados com * são obrigatórios.</small>
+                                </p>
+                            </div>
+
+                            <div
+                                class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                                <div class="float--right">
+                                    <button class="mdc-button mdc-button--outlined">
+                                        Salvar alterações &nbsp; <i class="fa fa-send-o"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<app-modal-attention (doClose)="emitAlert(false)" *ngIf="attention" [show]="attention"></app-modal-attention>

@@ -1,0 +1,28 @@
+
+.color-red {
+    color: #f00;
+}
+
+.color-orange {
+    color: #fd6A02;
+}
+.color-yellow {
+    color: #fdce08;
+}
+
+.color-green {
+    color: #12ad2a;
+}
+
+.color-pink {
+    color: #8700ad;
+}
+
+
+.mdc-theme--text-primary-on-primary-light {
+    color: var(--mdc-theme-text-primary-on-primary-light, rgba(0, 0, 0, 0.87)) !important;
+}
+
+.portal-color-default {
+    color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, .87)) !important;
+}

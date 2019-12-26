@@ -1,0 +1,61 @@
+<div
+  class="portal-main__content mdc-layout-grid--fullheight mdc-theme--background mdc-theme--text-primary-on-background">
+  <div class="mdc-layout-grid portal-dashboard">
+    <div class="mdc-layout-grid__inner">
+      <div
+        class="portal-widget mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+        <p class="portal-widget__heading mdc-typography--subheading2">Solicitação de alteração do <strong>AD</strong>
+        </p>
+
+        <div class="mdc-card portal-widget__card mdc-card--portal-fullheight mdc-card--portal-space-between">
+          <div>
+            <form #form="ngForm" (submit)="search()" autocomplete="off">
+              <div class="mdc-layout-grid">
+                <div
+                  class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                  <div class="mdc-text-field mdc-text-field" style="width:250px;">
+                    <input [(ngModel)]="numeroPi" name="numero_pi" autocomplete="off" class="mdc-text-field__input"
+                      required type="text">
+
+                    <label [class.mdc-floating-label--float-above]="numeroPi" for="numero_pi"
+                      class="mdc-floating-label">
+                      NÚMERO PI
+                    </label>
+                    <div class="mdc-line-ripple"></div>
+                  </div>
+                  <button style="margin-left:2em"
+                  id="btn-search-pi" 
+                  type="submit" [disabled]="!form.valid"
+                    class="mdc-button mdc-button--outlined">
+                    <i class="fa fa-search"></i>&nbsp;PESQUISAR
+                  </button>
+                  <span id="span-pi-nao-encontrado" *ngIf="dataTable?.version >=2" class="color-red" style="margin-left: 1em; font-weight:500">PI já alterado anteriormente</span>
+                </div>
+              </div>
+            </form>
+            <div class="mdc-layout-grid">
+              <form *ngIf="dataTable && !emptyTable"
+                class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone"
+                #formTable="ngForm" (submit)="confirm()" autocomplete="off">
+                  <app-ad-table [dadosAdPi]="dataTable"></app-ad-table>
+                <div
+                  class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                  <button style="margin-top: 1.8em" type="submit"
+                  id="btn-salvar-tabela"
+                   [disabled]="!formTable.valid"
+                    class="mdc-button mdc-button--outlined">
+                    <i class="fa fa-check"></i>&nbsp;Salvar alterações
+                  </button>
+                </div>
+              </form>
+              <div *ngIf="dataTable && emptyTable"
+                class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                <p id="p-msg-pi-nao-encontrado">Não foi encontrado nenhuma inserção para o PI informado.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

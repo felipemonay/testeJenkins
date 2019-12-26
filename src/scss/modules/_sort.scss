@@ -1,0 +1,14 @@
+
+.sort-direction {
+    float: right;
+    margin: 33px -6.5px 0 0;
+
+    .sort-icon {
+        margin: 1px -6.5px;
+        float: left;
+
+        &.sort-icon-disabled {
+            color: #bbb;
+        }
+    }
+}

@@ -1,0 +1,162 @@
+<aside [ngClass]="{'mdc-dialog--open': show}" class="mdc-dialog">
+    <div class="mdc-dialog__surface">
+        <header class="mdc-dialog__header">
+            <h2 class="mdc-dialog__header__title">Origem verba campanha</h2>
+        </header>
+
+        <form #formSeen="ngForm" (submit)="send()" autocomplete="off">
+            <section class="mdc-dialog__body mdc-dialog__body--scrollable">
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        <div
+                            class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone mdc-box">
+                            <div class="mdc-layout-grid__inner">
+                                <div
+                                    class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone mg-12--top">
+                                    <div class="mdc-checkbox">
+                                        <input (change)="changeCheckbox()" [(ngModel)]="mrm.marketing_check"
+                                               [required]="!mrm.others_check" autocomplete="off"
+                                               class="mdc-checkbox__native-control" id="marketing_check"
+                                               name="marketing_check" type="checkbox"
+                                               value="1">
+                                        <div class="mdc-checkbox__background mg-6--top">
+                                            <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                                <path class="mdc-checkbox__checkmark-path"
+                                                      d="M1.73,12.91 8.1,19.28 22.79,4.59" fill="none"
+                                                      stroke="white"></path>
+                                            </svg>
+                                            <div class="mdc-checkbox__mixedmark"></div>
+                                        </div>
+                                    </div>
+                                    <label class="cursor--pointer" for="marketing_check">
+                                        Marketing <i class="fa fa-question-circle fa-lg cursor--pointer"
+                                                     data-toggle="tooltip"
+                                                     title="Para identificar a origem do investimento em marketing é necessário informar o código do sistema MRM. Campo ID_ACAO preenchimento obrigatório, campo ID_PEÇA preenchimento desejável."></i>
+                                    </label>
+                                    <div class="mdc-line-ripple"></div>
+                                </div>
+
+                                <div
+                                    class="mdc-layout-grid__cell--span-5-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                    <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                        <input [(ngModel)]="mrm.action_id" [disabled]="!mrm.marketing_check"
+                                               [required]="mrm.marketing_check" autocomplete="off"
+                                               class="mdc-text-field__input"
+                                               id="action_id" name="action_id"
+                                               type="text">
+                                        <label [class.mdc-floating-label--float-above]="mrm.action_id"
+                                               class="mdc-floating-label"
+                                               for="action_id">ID ação </label>
+                                        <div class="mdc-line-ripple"></div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                    <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                        <input [(ngModel)]="mrm.piece_id" [disabled]="!mrm.marketing_check"
+                                               autocomplete="off" class="mdc-text-field__input"
+                                               id="piece_id" name="piece_id"
+                                               type="text">
+                                        <label [class.mdc-floating-label--float-above]="mrm.piece_id"
+                                               class="mdc-floating-label"
+                                               for="piece_id">ID peça </label>
+                                        <div class="mdc-line-ripple"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone mdc-box">
+                            <div class="mdc-layout-grid__inner">
+                                <div
+                                    class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-3-phone mg-12--top">
+                                    <div class="mdc-checkbox">
+                                        <input (change)="changeCheckbox()" [(ngModel)]="mrm.others_check"
+                                               [required]="!mrm.marketing_check" autocomplete="off"
+                                               class="mdc-checkbox__native-control" id="others_check"
+                                               name="others_check" type="checkbox"
+                                               value="1">
+                                        <div class="mdc-checkbox__background mg-6--top">
+                                            <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                                <path class="mdc-checkbox__checkmark-path"
+                                                      d="M1.73,12.91 8.1,19.28 22.79,4.59" fill="none"
+                                                      stroke="white"></path>
+                                            </svg>
+                                            <div class="mdc-checkbox__mixedmark"></div>
+                                        </div>
+                                    </div>
+                                    <label class="cursor--pointer" for="others_check">
+                                        Outros <i class="fa fa-question-circle fa-lg cursor--pointer"
+                                                  data-toggle="tooltip"
+                                                  title="Caso a origem da verba da campanha não seja o marketing (total ou parcial), marcar a opção OUTROS e detalhar no campo ORIGEM DA VERBA. (Ex. Área de Cartões)"></i>
+                                    </label>
+                                    <div class="mdc-line-ripple"></div>
+                                </div>
+
+                                <div
+                                    class="mdc-layout-grid__cell--span-9-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-5-phone">
+                                    <div class="mdc-text-field mdc-text-field--fullwidth mdc-text-field--upgraded">
+                                        <input [(ngModel)]="mrm.others" [disabled]="!mrm.others_check"
+                                               [required]="mrm.others_check" autocomplete="off"
+                                               class="mdc-text-field__input" id="others"
+                                               name="others" type="text">
+                                        <label [class.mdc-floating-label--float-above]="mrm.others"
+                                               class="mdc-floating-label"
+                                               for="others">Origem da
+                                            verba </label>
+                                        <div class="mdc-line-ripple"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                            <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--fullwidth">
+                                <textarea [(ngModel)]="mrm.comments" class="mdc-text-field__input" id="comments_others"
+                                          name="comments"
+                                          rows="3"></textarea>
+                                <label [class.mdc-floating-label--float-above]="mrm.comments" class="mdc-floating-label"
+                                       for="comments_others">
+                                    Observação <i class="fa fa-question-circle fa-lg cursor--pointer"
+                                                  data-toggle="tooltip"
+                                                  title="Campo livre e pode ser utilizado para controle das áreas/agências."></i>
+                                </label>
+                                <div class="mdc-line-ripple"></div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                            <p class="mdc-typography--body2 float--right">
+                                <small>Os campos marcados com * são obrigatórios, assim como uma das opções
+                                    (marketing/outros).
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="mdc-dialog__footer">
+                <button (click)="cancel()"
+                        class="mdc-button mdc-button--raised mdc-dialog__footer__button mdc-dialog__footer__button--cancel mdc-ripple-upgraded"
+                        type="button">
+                    Cancelar
+                </button>
+
+                <button
+                    [disabled]="!formSeen.valid"
+                    class="mdc-button mdc-button--outlined mdc-dialog__footer__button mdc-dialog__footer__button--cancel mdc-ripple-upgraded">
+                    <span *ngIf="action === 'create'">Cadastrar</span>
+                    <span *ngIf="action === 'update'">Editar</span>
+
+                    &nbsp; <i class="fa fa-send-o"></i>
+                </button>
+            </footer>
+        </form>
+    </div>
+    <div (click)="close()" class="mdc-dialog__backdrop"></div>
+</aside>

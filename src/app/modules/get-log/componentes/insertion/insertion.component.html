@@ -1,0 +1,10 @@
+<div class="mdc-text-field mdc-text-field--fullwidth">
+  <input class="mdc-text-field__input" 
+  (keyup)="getValues($event.target.value)" [ngClass]="getInsertion"
+    [(ngModel)]="getInsertion" id="insertion" name="insertion" mask="99999999999999" 
+    type="text" />
+  <label class="mdc-floating-label" for="insertion">
+    {{label}} <i [title]="help" class="fa fa-question-circle fa-lg cursor--pointer" data-toggle="tooltip"></i>
+  </label>
+  <div class="mdc-line-ripple"></div>
+</div>

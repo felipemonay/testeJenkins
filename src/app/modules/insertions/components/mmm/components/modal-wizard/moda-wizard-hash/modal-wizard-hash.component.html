@@ -1,0 +1,16 @@
+<aside class="mdc-dialog mdc-dialog--open">
+  <div class="mdc-dialog__surface" style="max-width: 80%;padding:20px 0px;">
+    <aw-wizard>
+      <aw-wizard-step stepTitle="Consolidando os dados" class="d-block text-center">
+          <i style="color: #f10007;" class="d-block m-auto mb-3 fa fa-spinner fa-pulse fa-fw fa-4x"></i>
+          Aguarde enquando consolidamos os dados para gerar a hash...
+        </aw-wizard-step>
+        <aw-wizard-completion-step stepTitle="Hash gerada" class="d-block text-center">
+          <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex;"><div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div><span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long" style="
+          "></span><div class="swal2-success-ring"></div> <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div><div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div></div>
+          <div id="swal2-content" style="display: block;">Hash gerada com sucesso!</div>
+          <button type="button" class="d-block m-auto mt-3 swal2-confirm swal2-styled" (click)="close()">OK</button>
+      </aw-wizard-completion-step>
+    </aw-wizard>
+  </div>
+</aside>

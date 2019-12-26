@@ -1,0 +1,32 @@
+<aside class="mdc-dialog mdc-dialog--open" style="z-index:102">
+    <div class="mdc-dialog__surface" style="max-width: 80%;padding:20px 0px;z-index: 10;">
+        <aw-wizard>
+        <aw-wizard-step stepTitle="Validando" class="d-block text-center">
+            <i style="color: #f10007;" class="d-block m-auto mb-3 fa fa-spinner fa-pulse fa-fw fa-4x"></i>
+            <div id="swal2-content" style="display: block;">Estamos validando as informações, por favor aguarde...</div>
+        </aw-wizard-step>
+        <aw-wizard-step stepTitle="Salvando" class="d-block text-center">
+            <i *ngIf="!alert" style="color: #f10007;" class="d-block m-auto mb-3 fa fa-spinner fa-pulse fa-fw fa-4x"></i>
+            <div *ngIf="!alert" id="swal2-content" style="display: block;">Estamos salvando as informações, por favor aguarde...</div>
+            <div *ngIf="alert"> Deseja salvar todas as alterações? <br> <br>
+                <strong>Chave de inserção:</strong> {{insertion.campaign_name}}
+                ( {{insertion.id}} )<br>
+                <strong>Mês de veiculação:</strong>  {{insertion.reference_date}} <br>
+                <strong>Linha criativo (Título PI):</strong> {{group.name}} ( {{group.id}} ) <br>
+                <button type="button" class="d-inline mt-3 swal2-confirm swal2-styled" (click)="createOrUpdate()">Prosseguir</button>
+                <button type="button" class="d-inline mt-3 swal2-cancel swal2-styled" (click)="close(false)">Cancelar</button>
+            </div>
+        </aw-wizard-step>
+        <aw-wizard-completion-step stepTitle="Concluído" class="d-block text-center">
+            <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex;">
+                <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+                <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long" style=""></span>
+                <div class="swal2-success-ring"></div> <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+                <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+            </div>
+            <div id="swal2-content" style="display: block;">Informações salvas com sucesso!</div>
+            <button type="button" class="d-block m-auto mt-3 swal2-confirm swal2-styled" (click)="close(true)">OK</button>
+        </aw-wizard-completion-step>
+        </aw-wizard>
+    </div>
+</aside>

@@ -1,0 +1,21 @@
+
+.align {
+    display: flex;
+
+    &--center {
+        align-self: center;
+    }
+
+    &--right {
+        align-self: right;
+    }
+
+    &--left {
+        align-self: left;
+    }
+}
+
+.vertical-center {
+    display: flex;
+    align-items: center;
+}

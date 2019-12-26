@@ -1,0 +1,25 @@
+<footer
+    class="portal-footer mdc-toolbar mdc-theme--text-primary-on-primary-light mdc-theme--primary-light-bg mdc-toolbar--portal-no-shrink "
+    style="clear: both;position: fixed;bottom: 0px">
+    <div class="mdc-toolbar__row" style="min-height: 10px">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start" style="padding:2px;">
+            <small style="margin-left:10px;">
+                © {{ year | date:'yyyy'}} Santander
+            </small>
+
+
+        </section>
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start" style="padding:2px;">
+            <small>
+                <strong></strong>
+
+            </small>
+        </section>
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-end" style="padding:2px;">
+            <small>
+                <button (click)="showVersion()" class="btn btn-sm">Versão</button>
+
+            </small>
+        </section>
+    </div>
+</footer>

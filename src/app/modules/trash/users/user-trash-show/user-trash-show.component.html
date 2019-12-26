@@ -1,0 +1,47 @@
+<div class="portal-main__content mdc-theme--background mdc-theme--text-primary-on-background">
+    <div class="portal-pages__header">
+        <img alt="Santander" class="user-page--image" src="https://d30y9cdsu7xlg0.cloudfront.net/png/17241-200.png">
+    </div>
+
+    <section class="portal-pages__content">
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-1-desktop"></div>
+
+                <div
+                    class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone portal-pages__content-inner"
+                    style="margin-top: -357px">
+                    <h3 class="portal-pages__heading">
+                        Visualização de usuários excluídos
+
+                        <span class="float--right">
+                            <button class="mdc-button mdc-button--outlined mg-4--horizontal mg-n-8--top"
+                                    routerLink="/trash/users">Voltar</button>
+                            <!--<button (click)="confirm(user)" class="mdc-button mdc-button&#45;&#45;outlined mg-4&#45;&#45;horizontal mg-n-8&#45;&#45;top">Restaurar</button>-->
+                        </span>
+                    </h3>
+
+                    <div class="mg-30--bottom mg-10--top">
+                        <div class="alert alert--warning">Atenção, esse registro está excluído!</div>
+                    </div>
+
+                    <ul class="portal-list mdc-typography--body1">
+                        <li><strong>Nome</strong>: {{ user.name }}</li>
+                        <li><strong>Email</strong>: {{ user.email }}</li>
+                        <li><strong>CPF</strong>: {{ user.cpf }}</li>
+                        <li><strong>Telefone</strong>: {{ user.phone }}</li>
+                        <li><strong>Empresa</strong>: {{ user.company.name }}</li>
+                        <li><strong>Cargo</strong>: {{ user.office }}</li>
+                        <li><strong>Status</strong>: {{ user.status ? 'Ativo' : 'Inativo' }}</li>
+                        <li><strong>Data de cadastro</strong>: {{ user.created_at | dateFormat: 'dd/mm/yyyy HH:MM:ss' }}
+                        </li>
+                        <li><strong>Data da última
+                            alteração</strong>: {{ user.updated_at | dateFormat: 'dd/mm/yyyy HH:MM:ss' }}</li>
+                        <li><strong>Data da exclusão</strong>: {{ user.deleted_at | dateFormat: 'dd/mm/yyyy HH:MM:ss' }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,66 @@
+<div *ngIf="show" class="mdc-layout-grid__inner">
+    <div
+        class="portal-widget mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+        <h3 class="portal-widget__heading mdc-typography--subheading2">
+            Nível de acesso
+        </h3>
+
+        <div class="mdc-card portal-widget__card mdc-card--portal-fullheight mdc-card--portal-space-between">
+            <div>
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        <div
+                            class="portal-widget mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                            <div
+                                class="mdc-card portal-widget__card mdc-card--portal-fullheight mdc-card--portal-space-between">
+                                <div class="portal-access-level-table">
+                                    <table
+                                        class="mdl-data-table portal-table-tab-panel portal-table-tab-panel--active text--left">
+                                        <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Nível</th>
+                                            <th>Descrição</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr *ngFor="let group of groups">
+                                            <td>
+                                                <div class="mdc-checkbox">
+                                                    <input (change)="changeCheck($event, group)"
+                                                           [checked]="handlesChecked(group)"
+                                                           class="mdc-checkbox__native-control"
+                                                           type="checkbox"
+                                                           value="1">
+                                                    <div class="mdc-checkbox__background">
+                                                        <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                                            <path class="mdc-checkbox__checkmark-path"
+                                                                  d="M1.73,12.91 8.1,19.28 22.79,4.59"
+                                                                  fill="none"
+                                                                  stroke="white"></path>
+                                                        </svg>
+                                                        <div class="mdc-checkbox__mixedmark"></div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{ group.name }}</td>
+                                            <td>{{ group.description }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                            <button (click)="send()" id="btn-salvar-alteracoes-acesso" class="mdc-button mdc-button--outlined float--right">
+                                Salvar alterações &nbsp; <i class="fa fa-send-o"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

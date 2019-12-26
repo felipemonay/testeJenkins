@@ -1,0 +1,208 @@
+<div class="mdc-layout-grid__inner mg-80--top">
+    <div
+        class="portal-widget mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+        <p class="portal-widget__heading mdc-typography--subheading2">
+            MMM linha criativo (Título PI) <i class="fa fa-question-circle font-18 cursor--pointer"
+                data-toggle="tooltip"
+                title="Cada linha criativo (Título PI) cadastrada, terá uma HASH_MMM gerada automaticamente, assim que clicar no botão GERAR_HASH e CONFIRMAR na tela seguinte."></i>
+
+            <span class="pull-right">
+                <i *ngIf="insertion.confirmation"
+                    class="fa fa-question-circle font-26 float--left mg-8--right mg-6--top cursor--pointer"
+                    data-toggle="tooltip"
+                    title="Esse botão garante a cópia da hash gerada para todas as linhas criativo/peças de uma só vez, juntamente o nome da respectiva peça. Essa informação deverá ser disponibilizada no campo OBSERVAÇÃO do PI no Sistema AD. Ex. Cartão Free = #119:g163-p163[T20]:99# Cartão 123 = #119:g164-p164[T19]:99# "></i>
+                <button (click)="copyHash()" *ngIf="insertion.confirmation"
+                    class="mdc-button mdc-button--raised mg-2--right"><i class="fa fa-copy fa-lg"></i> &nbsp; Copiar
+                    Hash</button>
+
+
+                <button (click)="showModalGroup()" *ngIf="insertion.media === 'INTERNET' || insertion.media === 'OOH-DIGITAL'"
+                    class="mdc-button mdc-button--outlined"><i class="fa fa-plus fa-lg"></i> &nbsp; Peça</button>
+                <button (click)="showModalGroup()" *ngIf="insertion.media !== 'INTERNET' && insertion.media !== 'OOH-DIGITAL'"
+                    [disabled]="insertion.confirmation" class="mdc-button mdc-button--outlined"><i
+                        class="fa fa-plus fa-lg"></i> &nbsp; Peça</button>
+            </span>
+        </p>
+
+        <div class="mdc-card portal-widget__card mdc-card--portal-fullheight mdc-card--portal-space-between">
+            <div>
+                <div *ngIf="groups.length; else empty" class="pd-10">
+                    <div *ngFor="let group of groups" class="panel panel-info mg-10--top ">
+                        <div *ngIf="group.id !== group.insertion_group_tag_id && group.insertion"
+                            class="pd-10--horizontal pd-6--vertical font-14">
+                            <div class="mdc-layout-grid__inner">
+                                <div
+                                    class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-12-phone vertical-center">
+                                    <b class="condensed-text">Nome da campanha (ID):</b>
+                                    &nbsp; {{ group.insertion.campaign_name }} ({{ group.insertion.id }})
+                                </div>
+                                <div
+                                    class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-12-phone vertical-center">
+                                    <b class="condensed-text">ID peça:</b> &nbsp; {{ group.insertion_group_tag_id }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-heading">
+                            <div class="mdc-layout-grid__inner">
+                                <div
+                                    class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-12-phone vertical-center">
+                                    <small class="condensed-text"><b class="condensed-text">Nome linha criativo (Título
+                                            PI) /
+                                            (ID):</b>
+                                        &nbsp; {{ group.name }} / ({{ group.id }})
+                                    </small>
+                                </div>
+
+                                <div
+                                    class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-12-phone vertical-center">
+                                    <small class="condensed-text"><b class="condensed-text">Investimento peça:</b>
+                                        &nbsp; R$ {{ group.investment | price }}</small>
+                                </div>
+
+                                <div
+                                    class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-12-phone vertical-center no-copy">
+                                    <small class="condensed-text no-copy">
+                                        <b>HashMMM:</b> &nbsp;
+                                        <span *ngIf="group.hash" class="no-copy">{{ group.hash }}</span>
+                                        <span *ngIf="!group.hash" class="portal-badge portal-badge--secondary no-copy"
+                                            style="padding: 4px;display: inline;">SEM HASH</span>
+                                    </small>
+                                </div>
+
+                                <div
+                                    class="mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-12-phone">
+                                    <div class="btn-group pull-right">
+                                        <button (click)="showModalExcelEdit(group)" *ngIf="true"
+                                            class="mdc-button mdc-button---small">
+                                            <i class="fa fa-table fa-lg"></i>
+                                            <i *ngIf="group.digital.length || 0"
+                                                class="count" style="left:0;right:unset;width: auto;min-width: 50%;">{{ group.digital.length || 0 }}</i>
+                                        </button>
+                                        <button (click)="showModalExcel(group)" *ngIf="false"
+                                        class="mdc-button mdc-button---small">
+                                        <i class="fa fa-table fa-lg"></i>
+                                        <i *ngIf="group.digital.length || 0"
+                                        class="count">{{ group.digital.length || 0 }}</i>
+                                        </button>
+                                        <button (click)="showModalTag(group)" [disabled]="group.hash"
+                                            class="mdc-button mdc-button---small">
+                                            <i class="fa fa-plus fa-lg"></i>
+                                        </button>
+                                        <button (click)="showModalGroup(group)"
+                                            class="mdc-button mdc-button---small">
+                                            <i class="fa fa-edit fa-lg"></i>
+                                        </button>
+                                        <button (click)="confirm(group)" [disabled]="group.hash"
+                                            class="mdc-button mdc-button---small">
+                                            <i class="fa fa-trash fa-lg"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!--<div
+                                    class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-12-phone vertical-center" style="margin-top:-20px">
+                                    <small class="condensed-text"><b>ID de mídia:</b> &nbsp;
+                                        {{ group.media_id }}
+                                    </small>
+                                </div>-->
+                            </div>
+                        </div>
+
+                        <div class="mdl-data-table--responsible">
+                            <table class="mdl-data-table portal-table-tab-panel portal-table-tab-panel--active">
+                                <thead>
+                                    <tr class="text--left">
+                                        <th>Prioridade Prod/Subprod <i class="fa fa-question-circle fa-lg cursor--pointer"
+                                                data-toggle="tooltip"
+                                                title="A seleção de priorização pode ser utilizada, caso uma linha criativo (Título PI) tenha mais de um produto/subproduto, onde a relevância do mesmo na mídia seja diferente. Caso não exista essa priorização, basta desmarcar a flag. A seleção automática para prioridade de cada grupo será a primeira TAG inserida. "></i>
+                                        </th>
+                                        <th>Tipo Família</th>
+                                        <th>Seg. secundária</th>
+                                        <th>Natureza</th>
+                                        <th>Objetivo MMM</th>
+                                        <th>Família produto|subproduto</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngIf="group.insertion_tags.length; else emptyTag">
+                                    <tr *ngFor="let tag of group.insertion_tags">
+                                        <td>
+                                            <div class="mdc-checkbox">
+                                                <input (change)="status(group, tag, tag.priority)"
+                                                    [(ngModel)]="tag.priority" *ngIf="insertion.media === 'INTERNET' || insertion.media === 'OOH-DIGITAL'"
+                                                    [disabled]="group.hash || group.id !== group.insertion_group_tag_id && group.insertion"
+                                                    autocomplete="off" class="mdc-checkbox__native-control"
+                                                    type="checkbox" value="1">
+                                                <input (change)="status(group, tag, tag.priority)"
+                                                    [(ngModel)]="tag.priority" *ngIf="insertion.media !== 'INTERNET' && insertion.media !== 'OOH-DIGITAL'"
+                                                    [disabled]="insertion.confirmation || group.id !== group.insertion_group_tag_id && group.insertion"
+                                                    autocomplete="off" class="mdc-checkbox__native-control"
+                                                    type="checkbox" value="1">
+                                                <div class="mdc-checkbox__background">
+                                                    <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                                        <path class="mdc-checkbox__checkmark-path"
+                                                            d="M1.73,12.91 8.1,19.28 22.79,4.59" fill="none"
+                                                            stroke="white"></path>
+                                                    </svg>
+                                                    <div class="mdc-checkbox__mixedmark"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>{{ tag.primary_segmentation }}</td>
+                                        <td>{{ tag.secondary_segmentation }}</td>
+                                        <td>{{ tag.nature }}</td>
+                                        <td>{{ tag.objective }}</td>
+                                        <td>{{ tag.product ? tag.product : '---' }}</td>
+                                        <td>
+                                            <button (click)="showModalTag(group, tag)"
+                                                [disabled]="group.hash || group.id !== group.insertion_group_tag_id && group.insertion"
+                                                class="mdc-button mdc-button---small">
+                                                <i class="fa fa-edit fa-lg"></i>
+                                            </button>
+                                            <button (click)="confirmTag(group, tag)"
+                                                [disabled]="group.hash || group.id !== group.insertion_group_tag_id && group.insertion"
+                                                class="mdc-button mdc-button---small">
+                                                <i class="fa fa-trash fa-lg"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<app-show-modal-excel (close)="closeModalExcel($event)" *ngIf="false" [group]="modalShow.group" [insertion]="insertion"
+    [show]="modalShow.show"></app-show-modal-excel>
+
+
+<app-modal-excel (doCancel)="endModal()" (doClose)="close()" *ngIf="true" [_group]="modal.group"
+    [action]="modal.action.excel" [extra]="extra" [insertion]="insertion" [show]="modal.show.excel"></app-modal-excel>
+
+<app-modal-digital-group (doCancel)="endModal()" (doClose)="close()" *ngIf="modal.show.groupTag" [_group]="modal.group"
+    [_insertion]="insertion" [_show]="modal.show.groupTag" [action]="modal.action.group"></app-modal-digital-group>
+
+
+<app-modal-tag (doCancel)="endModal()" (doClose)="close()" [action]="modal.action.tag" [group]="modal.group"
+    [insertion]="insertion" [show]="modal.show.tag" [tag]="modal.tag"></app-modal-tag>
+
+
+<ng-template #empty>
+
+    <p class="pd-10--top text--center">Nenhuma peça cadastrada.</p>
+    <p *ngIf="!insertion.extra.insertion_id" class="pd-10--top text--center text--alert-color">
+        <i class="fa fa-warning text--alert-color"></i>
+        Para adicionar uma linha criativo (Título PI), cadastre as informações no bloco extras.</p>
+</ng-template>
+
+<ng-template #emptyTag>
+    <tr>
+        <td class="text--center" colspan="7">Nenhuma tag cadastrada.</td>
+    </tr>
+</ng-template>

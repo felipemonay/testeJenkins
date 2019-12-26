@@ -1,0 +1,59 @@
+<div
+    class="portal-main__content mdc-layout-grid--fullheight mdc-theme--background mdc-theme--text-primary-on-background">
+    <div class="mdc-layout-grid portal-dashboard">
+        <div class="mdc-layout-grid__inner">
+            <div
+                class="portal-widget mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                <h3 class="portal-widget__heading mdc-typography--subheading2">
+                    Listagem de <strong>Usuários Excluídos</strong>
+                </h3>
+
+                <div class="mg-30--bottom mg-10--top">
+                    <div class="alert alert--warning" id="alert-usuarios-excluidos">Atenção, esses registros estão excluídos!</div>
+                </div>
+
+                <div class="mdc-card portal-widget__card mdc-card--portal-fullheight mdc-card--portal-space-between">
+                    <div class="mdl-data-table--responsible">
+                        <table class="mdl-data-table portal-table-tab-panel portal-table-tab-panel--active"
+                        id="table-usuarios-excluidos">
+                            <thead>
+                            <tr class="text--left">
+                                <th>#</th>
+                                <th>Nome</th>
+                                <th>Empresa</th>
+                                <th>Email</th>
+                                <th>Data de exclusão</th>
+                                <th>Ações</th>
+                            </tr>
+                            </thead>
+                            <tbody *ngIf="users.data.length; else empty">
+                            <tr *ngFor="let user of users.data">
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.company.name }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.deleted_at | dateFormat: 'dd/mm/yyyy HH:MM:ss' }}</td>
+                                <td>
+                                    <a [queryParams]="{ id: user.id }" class="mdc-button mdc-button---xsmall"
+                                       routerLink="/trash/users/show" title="Visualizar"><i
+                                        class="fa fa-eye fa-lg color-green"></i></a>
+                                    <!--<a (click)="confirm(user)" class="mdc-button mdc-button-&#45;&#45;xsmall" title="Restaurar"><i class="fa fa-undo fa-lg color-orange"></i></a>-->
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <app-pagination (navigate)="getUsers($event)" [_data]="users"
+                                    class="align--center"></app-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #empty>
+    <tr>
+        <td class="text--center" colspan="6">Nenhum resultado encontrado!</td>
+    </tr>
+</ng-template>

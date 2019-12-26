@@ -1,0 +1,96 @@
+<header
+    class="mdc-toolbar mdc-theme--text-primary-on-primary-light mdc-theme--primary-light-bg mdc-toolbar--portal-no-shrink portal-toolbar"
+    style="height:40px; min-height:40px;">
+    <div class="mdc-toolbar__row" style="height:40px; min-height:40px;">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+            <a (click)="layoutService.toggleMenu()" [ngClass]="{'portal-burger-menu-icon--classic': layoutService.menu}"
+               class="material-icons mdc-toolbar__menu-icon" id="btn-menu">menu</a>
+            <span class="mdc-toolbar__title"></span>
+        </section>
+
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-end">
+            <app-top-toolbar-alert></app-top-toolbar-alert>
+            <nav>
+                <div class="profile">
+                    <button id="hamburguer-menu" (click)="toggleProfileModal()" class="mdc-button mdc-button-large mdc-theme--on-surface">
+                        <i aria-hidden="true" class="fa fa-bars fa-2x"></i> &nbsp; &nbsp; <i aria-hidden="true"
+                                                                                             class="fa fa-caret-down"></i>
+                    </button>
+
+                    <div aria-label="Notifications" class="mdc-menu-anchor">
+                        <div *ngIf="show_profile_modal" @show_profile_modal class="mdc-menu mdc-menu-profile"
+                             tabindex="-1">
+                            <div aria-hidden="true" class="mdc-menu__items mdc-list" role="menu">
+                                <div class="portal-user-menu-header">
+                                    <i aria-hidden="true"
+                                       class="fa fa-user-circle-o fa-2x portal-user-menu-header__avatar"></i>
+
+                                    <div class="portal-user-menu-header__details">
+                                        <h3 class="mg-0">{{ user.name }}</h3>
+                                        <h4 class="mg-0">{{ user.office }}</h4></div>
+                                </div>
+
+                                <ul aria-hidden="true" class="mdc-menu__items mdc-list" role="menu">
+                                    <a class="mdc-theme--on-surface" routerLink="/profile">
+                                        <li class="mdc-list-item" role="menuitem" tabindex="0">
+                                            <i aria-hidden="true" class="fa fa-user-circle-o "></i> &nbsp; &nbsp; Meu
+                                            Perfíl
+                                        </li>
+                                    </a>
+
+                                    <a class="mdc-theme--on-surface" href="https://manual-sts.midia.zone"
+                                       target="_blank">
+                                        <li class="mdc-list-item" role="menuitem" tabindex="0">
+                                            <i aria-hidden="true" class="fa fa-link"></i> &nbsp; &nbsp; Manual do
+                                            sistema
+                                        </li>
+                                    </a>
+
+                                     <a class="mdc-theme--on-surface" href="javascript:void(0);"  (click)="downloadCategories()"
+                                       >
+                                        <li class="mdc-list-item" role="menuitem" tabindex="0">
+                                            <i aria-hidden="true" class="fa fa-download"></i> &nbsp; &nbsp; Download de Materiais
+                                        </li>
+                                    </a>
+
+
+                                    <a class="mdc-theme--on-surface" routerLink="/contacts/create">
+                                        <li class="mdc-list-item" role="menuitem" tabindex="0">
+                                            <i aria-hidden="true" class="fa fa-question-circle"></i> &nbsp; &nbsp; Ajuda
+                                            (contato/suporte)
+                                        </li>
+                                    </a>
+
+                                    <a class="mdc-theme--on-surface" routerLink="/fluxo-manutencao/new">
+                                        <li class="mdc-list-item" role="menuitem" tabindex="0">
+                                            <i aria-hidden="true" class="fa fa-columns"></i> &nbsp; &nbsp;
+                                            Fluxo Manutenção PI/STS
+                                        </li>
+                                    </a>
+
+                                    <a class="mdc-theme--on-surface" href="https://pis.midia.zone/" target="_new">
+                                        <li class="mdc-list-item" role="menuitem" tabindex="0">
+                                            <i aria-hidden="true" class="fa fa-upload"></i> &nbsp; &nbsp;
+                                            Envio de Relatórios
+                                        </li>
+                                    </a>
+
+                                    <!--
+                                    <a class="mdc-theme--on-surface" routerLink="/solicitacao-alteracao">
+                                        <li class="mdc-list-item" role="menuitem" tabindex="0">
+                                            <i aria-hidden="true" class="fa fa-adn"></i> &nbsp; &nbsp;
+                                            Alteração no AD
+                                        </li>
+                                    </a>
+                                   -->
+
+                                    <app-logout class="cursor--pointer"></app-logout>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </section>
+    </div>
+</header>

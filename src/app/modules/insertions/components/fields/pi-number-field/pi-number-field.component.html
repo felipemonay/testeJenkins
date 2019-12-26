@@ -1,0 +1,12 @@
+<div class="mdc-text-field mdc-text-field--fullwidth">
+    <input (change)="onChange()" [(ngModel)]="_insertion.pi_number" [id]="name" [name]="name" autocomplete="off"
+           class="mdc-text-field__input"
+
+           required specialIsAlphaNumeric type="text">
+
+    <label [class.mdc-floating-label--float-above]="_insertion.pi_number" [for]="name" class="mdc-floating-label">
+        {{ label }} <i [title]="help" class="fa fa-question-circle fa-lg cursor--pointer" data-toggle="tooltip"></i>
+    </label>
+
+    <div class="mdc-line-ripple"></div>
+</div>

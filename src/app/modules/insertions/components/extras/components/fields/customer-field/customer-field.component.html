@@ -1,0 +1,12 @@
+<div class="mdc-select__dropdown">
+    <ng-select #customer (selected)="onSelect($event)" [disabled]="this.status.isConfirmed || this.status.isDuplicated"
+               [ngClass]="{'disabled':this.status.isConfirmed || this.status.isDuplicated}"
+               [options]="customers"
+               required="true"></ng-select>
+
+    <label [class.mdc-floating-label--float-above]="_extra.customer" class="mdc-floating-label">
+        {{ label }} <i [title]="help" class="fa fa-question-circle fa-lg cursor--pointer" data-toggle="tooltip"></i> *
+    </label>
+
+    <div class="mdc-line-ripple"></div>
+</div>

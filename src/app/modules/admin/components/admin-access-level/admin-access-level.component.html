@@ -1,0 +1,40 @@
+<div class="mdc-layout-grid__inner mg-40--top mg-40--left mg-40--right">
+    <div
+        class="portal-widget mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+        <div class="mdc-card portal-widget__card mdc-card--portal-fullheight mdc-card--portal-space-between">
+            <div class="mdc-layout-grid__inner">
+                <div
+                    class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                    <div class="mdc-layout-grid__inner">
+                        <div
+                            class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-6-phone">
+                            <div class="mdc-select__dropdown">
+                                <ng-select #access_level [allowClear]="false"
+                                           [options]="groups"></ng-select>
+                                <label [class.mdc-floating-label--float-above]="access_level.value"
+                                       class="mdc-floating-label">
+                                    Grupos <i class="fa fa-question-circle fa-lg cursor--pointer"
+                                              data-toggle="tooltip"></i>
+                                </label>
+                                <div class="mdc-line-ripple"></div>
+                            </div>
+                        </div>
+                        <div
+                            class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-6-phone">
+                            <div class="mdc-list-group">
+                                <h3 class="mdc-list-group__subheader">Empresas</h3>
+                                <ul class="mdc-list">
+                                    <li #company (click)="listMedia(access_level.value, company.value)"
+                                        *ngFor="let item of companies" class="mdc-list-item"
+                                        tabindex="0">
+                                        <span class="mdc-list-item__text">{{ item.name }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

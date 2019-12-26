@@ -1,0 +1,9 @@
+<div class="mdc-select__dropdown">
+    <ng-select #user (selected)="onSelect($event)" [options]="users"></ng-select>
+
+    <label [class.mdc-floating-label--float-above]="_insertion.user_id" class="mdc-floating-label">
+        {{ label }} <i [title]="help" class="fa fa-question-circle fa-lg cursor--pointer" data-toggle="tooltip"></i> *
+    </label>
+
+    <div class="mdc-line-ripple"></div>
+</div>

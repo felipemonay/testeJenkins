@@ -1,0 +1,60 @@
+
+.mdc-theme--primary-bg-gradient {
+    background: linear-gradient(#03A9F4, #0286c2);
+}
+
+.mdc-theme--background-light {
+    background: var(--mdc-theme-background-light, rgba(0, 0, 0, 0.05));
+}
+
+.mdc-theme--secondary-bg-gradient {
+    background: linear-gradient(var(--mdc-theme-secondary-light, red), var(--mdc-theme-secondary-dark, red));
+}
+
+.mdc-theme--primary-light-bg {
+    background-color: var(--mdc-theme-primary-light, #fff) !important;
+}
+
+.mdc-theme--primary-dark-bg {
+    background-color: var(--mdc-theme-primary-dark, #424242) !important;
+}
+
+.mdc-theme--primary-dark-0-bg {
+    background-color: var(--mdc-theme-primary-dark-0, #3a3a3a) !important;
+}
+
+.mdc-theme--secondary-bg-gradient {
+    background: linear-gradient(125deg, var(--mdc-theme-secondary-light, red), var(--mdc-theme-secondary-dark, red));
+}
+
+.portal-accent-bg {
+    color: rgb(255, 255, 255);
+    background: var(--mdc-theme-secondary-dark, red);
+}
+
+.theme--grey-bg {
+    background: #ddd;
+}
+
+.light-grey-bg {
+    background: #eee;
+}
+
+.light-grey-bg-red {
+    background: #ec0100;
+}
+
+.light-grey-bg-dark {
+    background: #ccc;
+}
+
+.bg-img--bottom {
+    background-image: url('/assets/images/fundo.jpg');
+    background-repeat: no-repeat, repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+
+    & > div {
+        background: rgba(0, 0, 0, 0.5)
+    }
+}

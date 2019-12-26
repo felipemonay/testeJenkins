@@ -1,0 +1,39 @@
+<div class="mdc-layout-grid__inner mg-60--top">
+    <div
+        class="portal-widget mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+        <p class="portal-widget__heading mdc-typography--subheading2">ORIGEM INVESTIMENTO DA CAMPANHA</p>
+
+        <div
+            class="mdc-card portal-widget__card mdc-card--portal-fullheight mdc-card--portal-space-between  panel-border">
+            <div class="mdl-data-table--responsible">
+                <table class="mdl-data-table portal-table-tab-panel portal-table-tab-panel--active">
+                    <thead>
+                    <tr class="text--left">
+                        <th>ID Origem Investimento</th>
+                        <th>ID Ação - Visto</th>
+                        <th>ID peça - Visto</th>
+                        <th>Outros/Origem da verba</th>
+                        <th>Observação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngIf="insertion.mrm; else emptySeen">
+                        <td>{{ insertion.mrm.id }}</td>
+                        <td>{{ insertion.mrm.action_id ? insertion.mrm.action_id : '--' }}</td>
+                        <td>{{ insertion.mrm.piece_id ? insertion.mrm.piece_id : '--' }}</td>
+                        <td>{{ insertion.mrm.others ? insertion.mrm.others : '--' }}</td>
+                        <td>{{ insertion.mrm.comments ? insertion.mrm.comments : '--' }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #emptySeen>
+    <tr>
+        <td class="text--center" colspan="6">Nenhum visto MRM cadastrado!</td>
+    </tr>
+</ng-template>
+

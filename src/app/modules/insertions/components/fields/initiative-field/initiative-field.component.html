@@ -1,0 +1,10 @@
+<div class="mdc-select__dropdown">
+    <ng-select #flag (deselected)="onDeselected()" (selected)="onSelect($event)" [allowClear]="true"
+               [options]="flags"></ng-select>
+
+    <label [class.mdc-floating-label--float-above]="_insertion.initiative_id" class="mdc-floating-label">
+        {{ label }} <i [title]="help" class="fa fa-question-circle fa-lg cursor--pointer" data-toggle="tooltip"></i>
+    </label>
+
+    <div class="mdc-line-ripple"></div>
+</div>

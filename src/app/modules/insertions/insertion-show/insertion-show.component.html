@@ -1,0 +1,167 @@
+<div
+    class="portal-main__content mdc-layout-grid--fullheight mdc-theme--background mdc-theme--text-primary-on-background">
+    <div class="mdc-layout-grid portal-dashboard">
+        <div class="mdc-layout-grid__inner">
+            <div
+                class="portal-widget mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                <p class="portal-widget__heading mdc-typography--subheading2">
+                    Detalhes da <strong>Chaves de Inserção</strong>
+
+                    <span class="float--right">
+                        <button class="mdc-button mdc-button--outlined mg-4--horizontal mg-n-8--top fix-btn-margin"
+                                routerLink="/insertions">Voltar</button>
+                        <button (click)="confirmDuplicate(insertion)" [disabled]="!insertion.confirmation"
+                                class="mdc-button mdc-button--outlined mg-4--horizontal mg-n-8--top fix-btn-margin">Duplicar</button>
+                        <button (click)="update(insertion)"
+                                class="mdc-button mdc-button--outlined mg-4--horizontal mg-n-8--top fix-btn-margin">Editar</button>
+                        <button (click)="confirm(insertion)"
+                                class="mdc-button mdc-button--outlined mg-4--horizontal mg-n-8--top fix-btn-margin">Excluir</button>
+                  </span>
+                </p>
+
+                <div class="mdc-card portal-widget__card mdc-card--portal-fullheight mdc-card--portal-space-between">
+                    <div class="mdl-data-table--responsible panel-border">
+                        <table class="mdl-data-table portal-table-tab-panel portal-table-tab-panel--active">
+                            <tbody>
+                            <tr>
+                                <td class="" width="250"><strong>NOME CAMPANHA STS:</strong></td>
+                                <td>{{ insertion.campaign_name }} ({{ insertion.id }})</td>
+                            </tr>
+                            <tr>
+                                <td width="250"><strong>NÚMERO PI (A.D):</strong></td>
+                                <td>{{ insertion.pi_number }}</td>
+                            </tr>
+                            <tr>
+                                <td width="250"><strong>USUÁRIO:</strong></td>
+                                <td>{{ insertion.user.name }}
+                                    - {{ insertion.created_at | dateFormat: 'dd/mm/yyyy HH:MM:ss' }}</td>
+                            </tr>
+                            <tr>
+                                <td width="250"><strong>MÊS ANO VEICULAÇÃO:</strong></td>
+                                <td>{{ insertion.reference_date | dateFormat: 'mm/yyyy' }}</td>
+                            </tr>
+                            <tr>
+                                <td width="250"><strong>ÁREA / MESA:</strong></td>
+                                <td>{{ insertion.area }}</td>
+                            </tr>
+                            <tr>
+                                <td width="250"><strong>MÍDIA/MEIO:</strong></td>
+                                <td>{{ insertion.media }}</td>
+                            </tr>
+                            <tr>
+                                <td width="250"><strong>TIPO DE PI:</strong></td>
+                                <td>{{ insertion.pi_type.name }}</td>
+                            </tr>
+                            <tr>
+                                <td width="250"><strong>PI NÃO VALORADO:</strong></td>
+                                <td>
+                                    <div *ngIf="insertion.pi_not_rated">
+                                        <i class="fa fa-check-square-o"></i>
+                                    </div>
+                                    <div *ngIf="!insertion.pi_not_rated">---</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="250"><strong>CUSTO UNITÁRIO (MODELO DE COMPRA):</strong></td>
+                                <td>{{ insertion.unit_cost ? ('R$ ' + (insertion.unit_cost | price)) : '---' }}</td>
+                            </tr>
+                            <tr>
+                                <td width="250"><strong>IMPACTO PLANEJADO (QTD):</strong></td>
+                                <td>{{ insertion.impact ? insertion.impact : '---' }}</td>
+                            </tr>
+                            <tr>
+                                <td width="250"><strong>TIPO IMPACTO:</strong></td>
+                                <td>{{ insertion.impact_type ? insertion.impact_type.name : '---' }}</td>
+                            </tr>
+                            <tr>
+                                <td width="250"><strong>OBSERVAÇÃO:</strong></td>
+                                <td>{{ insertion.comments ? insertion.comments : '---' }}</td>
+                            </tr>
+                            <tr>
+                                <td width="250"><strong>INVESTIMENTO LÍQUIDO:</strong></td>
+                                <td>{{ insertion.investment ? ('R$ ' + (insertion.investment | price)) : '---' }}</td>
+                            </tr>
+                            <tr>
+                                <td width="250"><strong>INICIATIVA:</strong></td>
+                                <td>{{ (insertion.initiative) ? insertion.initiative.name : '---' }}</td>
+                            </tr>
+                            <tr>
+                                <td width="250"><strong>CONFIRMADO POR:</strong></td>
+                                <td>
+                                    <div *ngIf="insertion.confirmation">
+                                        {{ insertion.confirmation.user.name }}
+                                        - {{ insertion.confirmation.created_at | dateFormat: 'dd/mm/yyyy HH:MM:ss' }}
+                                    </div>
+                                    <div *ngIf="!insertion.confirmation">---</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="250"><strong>DATA DA ÚLTIMA ALTERAÇÃO:</strong></td>
+                                <td>{{ insertion.updated_at | dateFormat: 'dd/mm/yyyy HH:MM:ss' }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mdc-layout-grid__inner mg-60--top">
+            <div
+                class="portal-widget mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-12-tablet mdc-layout-grid__cell--span-12-phone">
+                <p class="portal-widget__heading mdc-typography--subheading2">
+                    Extras
+                </p>
+
+                <div
+                    class="mdc-card portal-widget__card mdc-card--portal-fullheight mdc-card--portal-space-between panel-border">
+                    <div class="mdl-data-table--responsible">
+                        <table class="mdl-data-table portal-table-tab-panel portal-table-tab-panel--active">
+                            <tbody>
+                            <tr>
+                                <td width="250"><strong>DATA INICIAL:</strong></td>
+                                <td>{{ (insertion.extra && insertion.extra.initial_date) ? (insertion.extra.initial_date | dateFormat: 'dd/mm/yyyy') : '---' }}</td>
+                            </tr>
+                            <tr>
+                                <td width="250"><strong>DATA FINAL:</strong></td>
+                                <td>{{ (insertion.extra && insertion.extra.final_date) ? (insertion.extra.final_date | dateFormat: 'dd/mm/yyyy') : '---' }}</td>
+                            </tr>
+                            <tr *ngIf="insertion.media ==='RADIO'">
+                                <td width="250"><strong>COMPRA ROTATIVA</strong></td>
+                                <td>{{ insertion.extra.rotative ? 'SIM':'NÃO' }}</td>
+                            </tr>
+                            <tr *ngIf="insertion.extra && insertion.extra.media_owner && mediaModuleService.isEqual(insertion.media, 'DIGITAL')">
+                                <td width="250"><strong>VEÍCULO:</strong></td>
+                                <td>{{  insertion.extra.media_owner }}</td>
+                            </tr>
+                            <tr *ngIf="insertion.extra && insertion.extra.media_objective">
+                                <td width="250"><strong>OBJETIVO:</strong></td>
+                                <td>{{ insertion.extra.media_objective }}</td>
+                            </tr>
+                            <tr *ngIf="insertion.extra && insertion.extra.media_adserver_platform">
+                                <td width="250"><strong>AD SERVER / PLATAFORMA:</strong></td>
+                                <td>{{ insertion.extra.media_adserver_platform}}</td>
+                            </tr>
+
+                            <tr *ngIf="mediaModuleService.isEqual(insertion.media, 'DIGITAL')">
+                                <td width="250"><strong>CLIENTE:</strong></td>
+                                <td>{{ insertion.extra?.customer }}</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span class="float--right">
+
+
+
+                  </span>
+
+        <app-show-mmm [insertion]="insertion"></app-show-mmm>
+
+        <app-show-mrm [insertion]="insertion"></app-show-mrm>
+    </div>
+</div>
