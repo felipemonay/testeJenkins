@@ -26,7 +26,7 @@ import {AlertService} from '../../../../alert.service';
 export class TopToolbarAlertComponent implements OnInit {
 
 
-    @ViewChild('alert_list') public alert_list: ElementRef;
+    @ViewChild('alert_list', { static: false }) public alert_list: ElementRef;
     public insertionsData: Array<any> = new Array<any>();
     public hasInsertion = false;
     public show_alert_modal = false;

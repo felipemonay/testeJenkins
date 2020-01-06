@@ -20,7 +20,7 @@ import swal from 'sweetalert2';
 })
 
 export class MediaOwnerFieldComponent implements OnInit {
-    @ViewChild('media_owner') media_owner: any;
+    @ViewChild('media_owner', { static: true }) media_owner: any;
     public owners: Array<IOption> = [];
     insertionExtraOption: InsertionExtraOption[];
     @Input()

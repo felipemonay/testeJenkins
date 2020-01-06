@@ -33,7 +33,7 @@ export class ModalWizardExcelComponent implements OnInit {
   @Output()
   public doClose: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild(WizardComponent)
+  @ViewChild(WizardComponent, { static: true })
   public wizard: WizardComponent;
   _show = true;
 

@@ -18,7 +18,7 @@ export class ModalWizardComponent implements OnInit {
   @Input()
   public insertion: Insertion = new Insertion();
     
-  @ViewChild(WizardComponent)
+  @ViewChild(WizardComponent, { static: true })
   public wizard: WizardComponent;
 
   _show = true;

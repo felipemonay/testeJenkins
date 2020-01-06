@@ -31,7 +31,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class InsertionListComponent implements OnInit {
-    @ViewChild('field') field: any;
+    @ViewChild('field', { static: true }) field: any;
 
     public insertions: Pagination = new Pagination();
 

@@ -10,7 +10,7 @@ import {InsertionService} from '../../../insertion.service';
 })
 
 export class PiTypeFieldComponent implements OnInit {
-    @ViewChild('pi_type') pi_type: any;
+    @ViewChild('pi_type', { static: true }) pi_type: any;
     public pi_types: Array<IOption> = [];
     public name: string = 'pi_type_id';
     public label: string = 'Tipo de PI';

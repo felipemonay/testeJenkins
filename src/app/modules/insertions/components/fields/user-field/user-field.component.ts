@@ -11,7 +11,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 
 export class UserFieldComponent implements OnInit {
-    @ViewChild('user') user: any;
+    @ViewChild('user', { static: true }) user: any;
     public users: Array<IOption> = [];
     public name: string = 'user_id';
     public label: string = 'Usuário';

@@ -11,7 +11,7 @@ import swal from 'sweetalert2';
 })
 
 export class MediaFieldComponent implements OnInit {
-    @ViewChild('media') media: any;
+    @ViewChild('media', { static: true }) media: any;
     public _currentMedia = '';
     public medias: Array<IOption> = [];
     public name: string = 'media';

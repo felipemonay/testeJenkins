@@ -9,7 +9,7 @@ import {FlagService} from '../../../../../shared/services/flag.service';
 })
 
 export class InitiativeFieldComponent implements OnInit {
-    @ViewChild('flag') flag: any;
+    @ViewChild('flag', { static: true }) flag: any;
     public flags: Array<IOption> = [];
     public name: string = 'initiative_id';
     public label: string = 'Iniciativa';

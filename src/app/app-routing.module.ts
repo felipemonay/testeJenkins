@@ -15,7 +15,7 @@ const routes: Routes = [
         component:   LayoutClassicComponent,
         canActivate: [RedirectIfNotAuthenticatedGuard],
         children:    [
-            {path: '', loadChildren: './modules/dashboard/dashboard.module#DashboardModule'}
+            {path: '', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)}
         ]
     },
     {
@@ -24,7 +24,7 @@ const routes: Routes = [
         component:   LayoutClassicComponent,
         canActivate: [RedirectIfNotAuthenticatedGuard],
         children:    [
-            {path: '', loadChildren: './modules/profile/profile.module#ProfileModule'}
+            {path: '', loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule)}
         ]
     },
     {
@@ -33,7 +33,7 @@ const routes: Routes = [
         component:   LayoutClassicComponent,
         canActivate: [RedirectIfNotAuthenticatedGuard],
         children:    [
-            {path: '', loadChildren: './modules/users/user.module#UserModule'}
+            {path: '', loadChildren: () => import('./modules/users/user.module').then(m => m.UserModule)}
         ]
     },
     {
@@ -42,7 +42,7 @@ const routes: Routes = [
         component:   LayoutClassicComponent,
         canActivate: [RedirectIfNotAuthenticatedGuard],
         children:    [
-            {path: '', loadChildren: './modules/insertions/insertion.module#InsertionModule'}
+            {path: '', loadChildren: () => import('./modules/insertions/insertion.module').then(m => m.InsertionModule)}
         ]
     },
     {
@@ -51,7 +51,7 @@ const routes: Routes = [
         component:   LayoutClassicComponent,
         canActivate: [RedirectIfNotAuthenticatedGuard],
         children:    [
-            {path: '', loadChildren: './modules/contacts/contact.module#ContactModule'}
+            {path: '', loadChildren: () => import('./modules/contacts/contact.module').then(m => m.ContactModule)}
         ]
     },
     {
@@ -60,7 +60,7 @@ const routes: Routes = [
         component:   LayoutClassicComponent,
         canActivate: [RedirectIfNotAuthenticatedGuard],
         children:    [
-            {path: '', loadChildren: './modules/fluxo-manutencao/fluxo-manutencao.module#FluxoManutencaoModule'}
+            {path: '', loadChildren: () => import('./modules/fluxo-manutencao/fluxo-manutencao.module').then(m => m.FluxoManutencaoModule)}
         ]
     },
     {
@@ -69,7 +69,7 @@ const routes: Routes = [
         component:   LayoutClassicComponent,
         canActivate: [RedirectIfNotAuthenticatedGuard],
         children:    [
-            {path: '', loadChildren: './modules/solicitacao-alteracao/solicitacao-alteracao.module#SolicitacaoAlteracaoModule'}
+            {path: '', loadChildren: () => import('./modules/solicitacao-alteracao/solicitacao-alteracao.module').then(m => m.SolicitacaoAlteracaoModule)}
         ]
     },
     {
@@ -78,7 +78,7 @@ const routes: Routes = [
         component:   LayoutClearComponent,
         canActivate: [RedirectIfAuthenticatedGuard],
         children:    [
-            {path: '', loadChildren: './modules/auth/auth.module#AuthModule'}
+            {path: '', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)}
         ]
     },
     {
@@ -87,7 +87,7 @@ const routes: Routes = [
         component:   LayoutClassicComponent,
         canActivate: [RedirectIfNotAuthenticatedGuard],
         children:    [
-            {path: '', loadChildren: './modules/financial-control/financial-control.module#FinancialControlModule'}
+            {path: '', loadChildren: () => import('./modules/financial-control/financial-control.module').then(m => m.FinancialControlModule)}
         ]
     },
     {
@@ -96,7 +96,7 @@ const routes: Routes = [
         component:   LayoutClassicComponent,
         canActivate: [RedirectIfNotAuthenticatedGuard],
         children:    [
-            {path: '', loadChildren: './modules/media-plan/media-plan.module#MediaPlanModule'}
+            {path: '', loadChildren: () => import('./modules/media-plan/media-plan.module').then(m => m.MediaPlanModule)}
         ]
     },
     {
@@ -104,7 +104,7 @@ const routes: Routes = [
         data:        {base: true},
         component:   LayoutClassicComponent,
         canActivate: [RedirectIfNotAuthenticatedGuard],
-        loadChildren: './modules/resumo-media/resumo-media.module#ResumoMediaModule'
+        loadChildren: () => import('./modules/resumo-media/resumo-media.module').then(m => m.ResumoMediaModule)
        
     },
     {
@@ -113,7 +113,7 @@ const routes: Routes = [
         component:   LayoutClassicComponent,
         canActivate: [RedirectIfNotAuthenticatedGuard],
         children:    [
-            {path: '', loadChildren: './modules/get-log/get-log.module#GetLogModule'}
+            {path: '', loadChildren: () => import('./modules/get-log/get-log.module').then(m => m.GetLogModule)}
         ]
     },
     {
@@ -122,7 +122,7 @@ const routes: Routes = [
         component:   LayoutClassicComponent,
         canActivate: [RedirectIfNotAuthenticatedGuard],
         children:    [
-            {path: '', loadChildren: './modules/trash/trash.module#TrashModule'}
+            {path: '', loadChildren: () => import('./modules/trash/trash.module').then(m => m.TrashModule)}
         ]
     },
     {
@@ -131,12 +131,12 @@ const routes: Routes = [
         component:   LayoutClassicComponent,
         canActivate: [RedirectIfNotAuthenticatedGuard],
         children:    [
-            {path: '', loadChildren: './modules/admin/admin.module#AdminModule'}
+            {path: '', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)}
         ]
     },
     {
         path: 'error', data: {base: true}, component: LayoutClearComponent, children: [
-            {path: '', loadChildren: './modules/errors/error.module#ErrorModule'}
+            {path: '', loadChildren: () => import('./modules/errors/error.module').then(m => m.ErrorModule)}
         ]
     },
     {path: '**', redirectTo: '/error/404'}

@@ -13,7 +13,7 @@ import {InsertionExtraOptionsService} from '../../../../../../../shared/services
 })
 
 export class MediaObjectiveFieldComponent implements OnInit {
-    @ViewChild('media_objective') media_objective: any;
+    @ViewChild('media_objective', { static: true }) media_objective: any;
     public objectives: Array<IOption> = [];
     @Input()
     public insertion: Insertion = new Insertion();

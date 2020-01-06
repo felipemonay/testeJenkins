@@ -11,7 +11,7 @@ import {InsertionService} from '../../../insertion.service';
 })
 
 export class ImpactTypeFieldComponent implements OnInit {
-    @ViewChild('impact_type') impact_type: any;
+    @ViewChild('impact_type', { static: true }) impact_type: any;
     public impactTypes: Array<IOption> = [];
     public name = 'impact_type_id';
     public label = 'Tipo Impacto';

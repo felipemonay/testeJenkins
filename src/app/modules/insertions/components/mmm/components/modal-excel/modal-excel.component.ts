@@ -24,20 +24,20 @@ import {forkJoin} from 'rxjs';
 
 export class ModalExcelComponent implements OnInit {
 
-    @ViewChild('_handsontable')
+    @ViewChild('_handsontable', { static: true })
     public _handsontable = HotTableComponent;
 
-    @ViewChild('alert_text_valid') public alert_text_valid: ElementRef;
+    @ViewChild('alert_text_valid', { static: true }) public alert_text_valid: ElementRef;
 
-    @ViewChild('alert_text_duplicated') public alert_text_duplicated: ElementRef;
+    @ViewChild('alert_text_duplicated', { static: true }) public alert_text_duplicated: ElementRef;
 
-    @ViewChild('alert_text_empty') public alert_text_empty: ElementRef;
+    @ViewChild('alert_text_empty', { static: true }) public alert_text_empty: ElementRef;
 
-    @ViewChild('alert_midia_correpondence_search') public alert_midia_correpondence_search: ElementRef;
+    @ViewChild('alert_midia_correpondence_search', { static: true }) public alert_midia_correpondence_search: ElementRef;
 
-    @ViewChild('alert_midia_correpondence_not_search') public alert_midia_correpondence_not_search: ElementRef;
+    @ViewChild('alert_midia_correpondence_not_search', { static: true }) public alert_midia_correpondence_not_search: ElementRef;
 
-    @ViewChild('alert_channel_segmentacao') public alert_channel_segmentacao: ElementRef;
+    @ViewChild('alert_channel_segmentacao', { static: true }) public alert_channel_segmentacao: ElementRef;
 
     // @ViewChild('alert_views_midia') public alert_views_midia: ElementRef;
 

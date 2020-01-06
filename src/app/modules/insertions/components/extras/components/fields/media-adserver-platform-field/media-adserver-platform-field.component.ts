@@ -18,7 +18,7 @@ import {Filters} from 'src/app/shared/models/filters';
 })
 
 export class MediaAdserverPlatformFieldComponent implements OnInit {
-    @ViewChild('media_adserver_platform') media_adserver_platform: any;
+    @ViewChild('media_adserver_platform', { static: true }) media_adserver_platform: any;
     public status = {
         isNewRecord:  false,
         isConfirmed:  false,

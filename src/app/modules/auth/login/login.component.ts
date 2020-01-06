@@ -11,7 +11,7 @@ import {ErrorHandler} from '../../../shared/http/responses/error-handler';
 
 export class LoginComponent {
     public user: User = new User();
-    @ViewChild('password') passwordElement: ElementRef;
+    @ViewChild('password', { static: true }) passwordElement: ElementRef;
     private canSend = true;
 
     constructor(private authService: AuthService, private router: Router) {

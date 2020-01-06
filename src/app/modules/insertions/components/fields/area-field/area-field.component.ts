@@ -11,7 +11,7 @@ import swal from 'sweetalert2';
 })
 
 export class AreaFieldComponent implements OnInit {
-    @ViewChild('area') area: any;
+    @ViewChild('area', { static: true }) area: any;
     public _currentArea = '';
     public areas: Array<IOption> = [];
     public name: string = 'area';

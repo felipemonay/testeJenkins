@@ -10,7 +10,7 @@ import {Extra} from 'src/app/shared/models/extra';
 })
 export class CustomerFieldComponent implements OnInit {
 
-    @ViewChild('customer') customer: any;
+    @ViewChild('customer', { static: true }) customer: any;
     public customers: Array<IOption> = [];
     public status = {
         isNewRecord:  false,
