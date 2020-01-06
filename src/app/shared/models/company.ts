@@ -1,3 +1,5 @@
+import { Injectable } from "@angular/core";
+@Injectable()
 export class Company {
 
     public static BBI_SOLUTIONS: number = 1;
